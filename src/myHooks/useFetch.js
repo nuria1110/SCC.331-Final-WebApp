@@ -15,7 +15,6 @@ function useFetch (url) {
           window.location.replace('/')
         } else {
           alert("There has been an error, please try again later.")
-          window.location.replace('/')
         }
       }),
     ])

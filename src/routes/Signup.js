@@ -8,7 +8,7 @@ function Signup() {
     const [password, setPassword] = useState();
 
     const handleSignup = () => {
-
+        
     }
 
     return(<>

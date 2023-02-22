@@ -8,6 +8,7 @@ import {
 
 import Login from "./routes/Login"
 import Signup from "./routes/Signup"
+import SInstitute from "./routes/SInstitute"
 import "./style.css";
 
 // const AppLayout = () => (
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
         path: "/signup",
         element: <Signup />,
+    }, 
+    {
+        path: "/selectinstitute",
+        element: <SInstitute />,
     },     
     // {
     //     element: <AppLayout />,

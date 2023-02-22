@@ -5,3 +5,115 @@
   padding: 0;
   font-family: "Lato", sans-serif;
 }
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+[class*="add"] button {
+  border: 1px solid #3C34A0;
+  background-color: #3C34A0;
+}
+
+[class*="add"]>button:hover {
+  border: 1px solid #575A6B;
+  background-color: #575A6B;
+}
+
+[class*="right"] button {
+  float: right;
+}
+
+[class*="left"]>button {
+  float: left;
+}
+
+input[type=text], 
+input[type=password],
+input[type=number]{
+  width: 100%;
+  padding: 5px 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-button{
+  display: flex;
+  margin: auto;
+  margin-top: 1rem;
+  width: 50%;
+  color: #fff;
+  border-radius: 30px;
+  padding: 6px 15px;
+  border: 1px solid #3C34A0;
+  background-color: #3C34A0;
+  justify-content: center;
+  font-size: medium;
+}
+
+.form-button:hover {
+  border: 1px solid #575A6B;
+  background-color: #575A6B;
+}
+
+.si-popup {
+  margin-top: 0.5rem;
+}
+.si-popup>p{
+  font-size: large;
+}
+
+.si-popup-divider {
+  border-bottom: 1px solid #575A6B;
+  min-width: 90%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sInstitute {
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.si-intro {
+  align-self: center;
+}
+
+.si-content {
+  margin-top: 1.5rem;
+}
+
+.si-form {
+  margin-top: 1rem;
+}
+
+.si-button {
+  align-self: center;
+}
+
+.si-button button {
+  color: #fff;
+  width: fit-content;
+  font-size: small;
+  border-radius: 30px;
+  padding: 6px 15px;
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .si-button {
+    align-self: normal;
+  }
+
+  .si-button button{
+    float: right;
+    margin-right: 2rem;
+    font-size: medium;
+    padding: 10px 18px;
+  }
+}
+
