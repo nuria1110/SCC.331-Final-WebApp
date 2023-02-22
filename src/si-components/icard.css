@@ -19,11 +19,11 @@
     background-color: #575A6B;
 }
 
-.ic-container>p {
+.ic-clicker>p {
     font-size: large;
 }
 
-.ic-container>img {
+.ic-clicker>img {
     margin-top: 2rem;
     max-width: 145px;
     max-height: 95px;
@@ -46,4 +46,42 @@
 .ic-container>button:hover {
     border: 1px solid #08314e;
     background-color: #08314e;
+}
+
+.ic-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ic-save {
+    display: flex;
+    margin: auto;
+    margin-top: 1rem;
+    width: 40%;
+    color: #fff;
+    border-radius: 30px;
+    padding: 6px 15px;
+    border: 1px solid #3C34A0;
+    background-color: #3C34A0;
+    justify-content: center;
+    font-size: medium;
+}
+
+.ic-delete {
+    display: flex;
+    margin: auto;
+    margin-top: 1rem;
+    width: 40%;
+    color: #fff;
+    border-radius: 30px;
+    padding: 6px 15px;
+    border: 1px solid #7E0909;
+    background-color: #7E0909;
+    justify-content: center;
+    font-size: medium;
+}
+
+span {
+    margin-right: 5px;
 }

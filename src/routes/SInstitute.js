@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useFetch from "../myHooks/useFetch";
 import { useUserData } from '../myHooks/useUserData';
 import ICard from "../si-components/ICard";
@@ -60,7 +60,7 @@ function SInstitute() {
                     {institutes.institutes.length > 0 ? (<>
                         {institutes.institutes.map((item) => {
                             return(<>
-                                <ICard name={item.name}/>
+                                <ICard id={item.instituteID} name={item.name}/>
                             </>)
                         })}
                     </>) 
