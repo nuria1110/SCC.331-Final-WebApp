@@ -75,7 +75,7 @@ input[type=number]{
   display: flex;
   color: #fff;
   flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .si-intro {
@@ -84,6 +84,9 @@ input[type=number]{
 
 .si-content {
   margin-top: 1.5rem;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .si-form {
