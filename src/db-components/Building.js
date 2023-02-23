@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import useFetch from "../myHooks/useFetch";
-// import Room from './Room';
-import "../style.css";
+import Room from './Room';
 
 function Building(props) {
 
@@ -32,12 +31,18 @@ function Building(props) {
     return (<>
         <div className='db-card'>
             <h2>{name}</h2> 
+            <div className='dbcard-divider'></div>  
 
             {capacity !== null && rooms !== null ? (<>
                 <h3>Current Capacity:</h3>
                 <div className="db-cap">                    
                     <p>{capacity}</p>
-                </div>                             
+                </div> 
+                {rooms.rooms.map((item) => {
+                    return (                        
+                        <Room id={item.roomID} name={item.roomName} />  
+                    );
+                })}                              
             </>):(<p>Loading...</p>)}
 
         </div>

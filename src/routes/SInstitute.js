@@ -23,6 +23,7 @@ function SInstitute() {
         .then(res => res.json())
         .then((data) => {
           console.log(data);
+          alert(newName + " Institute has successfully been added.")
         })
         .catch((err) => {
             console.log(err);

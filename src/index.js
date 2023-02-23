@@ -11,6 +11,8 @@ import Signup from "./routes/Signup";
 import SInstitute from "./routes/SInstitute";
 import Navbar from './nv-components/Navbar';
 import Dashboard from './routes/Dashboard';
+import Grafana from './routes/Grafana';
+import Admin from './routes/Admin';
 import "./style.css";
 
 const AppLayout = () => (
@@ -44,14 +46,14 @@ const router = createBrowserRouter([
             //     path: "map",
             //     element: <Map />,
             // },
-            // {
-            //     path: "data",
-            //     element: <GrafanaDashboard />,
-            // },
-            // {
-            //     path: "admin",
-            //     element: <Admin />,
-            // },
+            {
+                path: "data",
+                element: <Grafana />,
+            },
+            {
+                path: "admin",
+                element: <Admin />,
+            },
         ],
     },
 ]);

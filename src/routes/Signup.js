@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import '../login.css';
 
@@ -6,9 +7,18 @@ function Signup() {
 
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+    const navigate = useNavigate();
 
     const handleSignup = () => {
-        
+        fetch('https://rest.distressing.dev/users/add?user='+username+'&password='+password, {credentials: 'include'})
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data);
+            // navigate('/');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }
 
     return(<>
