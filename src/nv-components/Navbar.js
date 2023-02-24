@@ -10,7 +10,7 @@ import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarDataAdmin, SidebarDataUser } from "./SidebarData";
 import { IconContext } from "react-icons";
-import "../navbar.css";
+import "./navbar.css";
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
@@ -46,7 +46,7 @@ function Navbar() {
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
                     {item.icon}
-                    <span>{item.title}</span>
+                    <span className="nav-span">{item.title}</span>
                   </Link>
                 </li>
               );

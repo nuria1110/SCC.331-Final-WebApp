@@ -10,22 +10,41 @@
   box-sizing: border-box;
 }
 
-[class*="add"] button {
+[class*="add"] {
   border: 1px solid #3C34A0;
   background-color: #3C34A0;
 }
 
-[class*="add"]>button:hover {
+[class*="add"]:hover {
   border: 1px solid #575A6B;
   background-color: #575A6B;
 }
 
-[class*="right"] button {
+[class*="edit"] {
+  border: 1px solid #2870A3;
+  background-color: #2870A3;
+}
+
+[class*="edit"]:hover {
+  border: 1px solid #08314e;
+  background-color: #08314e;
+}
+
+[class*="right"] {
   float: right;
 }
 
-[class*="left"]>button {
+[class*="left"] {
   float: left;
+}
+
+button {
+  color: #fff;
+  border-radius: 30px;
+}
+
+span {
+  margin-right: 5px;
 }
 
 input[type=text], 
@@ -43,8 +62,6 @@ input[type=number]{
   margin: auto;
   margin-top: 1rem;
   width: 50%;
-  color: #fff;
-  border-radius: 30px;
   padding: 6px 15px;
   border: 1px solid #3C34A0;
   background-color: #3C34A0;
@@ -99,10 +116,8 @@ input[type=number]{
 }
 
 .si-button button {
-  color: #fff;
   width: fit-content;
   font-size: small;
-  border-radius: 30px;
   padding: 6px 15px;
   margin-top: 1rem;
 }
@@ -134,14 +149,12 @@ input[type=number]{
 .admin-content{
   display:flex;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-left: 1rem;
 }
 
 .db-button {
   display: flex;
   margin-bottom: 1rem;
-  color: #fff;
-  border-radius: 30px;
   padding: 6px 15px;
   border: 1px solid #575A6B;
   background-color: #575A6B;
@@ -229,20 +242,22 @@ input[type=number]{
 
 .admin-divider {
   border-bottom: 1px solid #575A6B;
-  width: 95%;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  width: 100%;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
 }
 
-.admin-menu ul{
+.admin-menu ul,
+.bs-menu ul{
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-  margin-left: 0.5rem;
+  
   margin-right: 0.5rem;
 }
 
-.admin-menu li {
+.admin-menu li, 
+.bs-menu li{
   display: flex;
   color: white;
   padding: 5px 20px;
@@ -252,9 +267,12 @@ input[type=number]{
   border-radius: 50px;
   border: 1px solid #232531;
   background-color: #232531;
-  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  margin-left: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.admin-menu li {
+  margin-top: 0.5rem;
 }
 
 .admin-menu li:hover {
@@ -266,6 +284,48 @@ input[type=number]{
   background-color: #575A6B;
   border: 1px solid #575A6B;
 } 
+
+.bs-content {
+  width: 100%;
+  margin: 0.5rem;
+  margin-right: 1rem;
+}
+
+.b-options {
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.s-dropdown {
+  float:left;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.s-dropdown>select{
+  background-color: #232531;
+  font-size: 15px;
+  align-items: center;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 8px;
+  border: none;
+  cursor: pointer;
+  width:85vw;
+  max-width: 270px;
+}
+
+.b-button{
+  padding: 6px 15px;
+  margin-bottom: 0.5rem;
+}
+
+.bs-menu {
+  margin-top: 1rem;
+}
+
 
 @media only screen and (min-width: 768px) {
 
@@ -298,6 +358,23 @@ input[type=number]{
     font-size: 16px;
   }
 
+  .bs-content {
+    margin: 1rem;
+  }
+
+  .s-dropdown>select {
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 10px 10px;
+    margin: 8px 0;
+    max-width: 300px;
+  }
+
+  .b-button {
+    margin-top: 1rem;
+    font-size: medium;
+  }
+
 }
 
 
@@ -314,6 +391,11 @@ input[type=number]{
     padding: 6px 35px;
     font-size: 20px;
     margin-left: 0.5rem;
+  }
+
+  .bs-menu li {
+    padding: 5px 28px;
+    font-size: 16px;
   }
 
 

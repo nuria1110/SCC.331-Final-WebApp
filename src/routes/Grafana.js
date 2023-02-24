@@ -1,18 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import useFetch from "../myHooks/useFetch";
 import { useUserData } from '../myHooks/useUserData';
 
 function Grafana() {
     const { getRole } = useUserData()
     const role = getRole()
+    const [userUrl] = useFetch('https://rest.distressing.dev/grafana/user') 
     const [url, setUrl] = useState(null)
 
     useEffect(() => {
         if(role === "3"){
-            setUrl('https://grafana.distressing.dev/d/SJ0h3d1Vk/331-admin-dashboard?kiosk=tv&from=now-1h&to=now&refresh=5s')
+            fetchAdmin()
         } else {
-            setUrl('https://grafana.distressing.dev/d/kDr5qOJVk/331-user-dashboard?orgId=2&from=now-1h&to=now&refresh=5s&kiosk=tv')
+            setUrl(userUrl.url)
         }
       }, [role])
+
+      const fetchAdmin = () => {
+        Promise.all([
+            fetch('https://rest.distressing.dev/grafana/admin', {credentials: "include"})
+            .then(res => res.json()),
+            ])
+        .then((data) => {
+            console.log(data)
+            setUrl(data[0].url)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
 
     return (<>
         <div class = "grafana">

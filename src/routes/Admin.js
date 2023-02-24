@@ -1,11 +1,11 @@
 
-
 import React, { useState } from "react";
 import { useUserData } from '../myHooks/useUserData';
 import { useEffect } from "react";
+import AdminSettings from "../admin-components/AdminSettings";
 
 function Admin () {
-    const menuItems = ["Buildings", "User Access", "Lights", "Users", "Microbits"];
+    const menuItems = ["Buildings", "Users", "Microbits"];
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
 
     const { getRole } = useUserData()
@@ -47,6 +47,7 @@ function Admin () {
                     </ul>   
                 </div>
                 <div className='admin-divider'></div>
+                <AdminSettings s={settingStr}/>
             </div>
              
         </div>

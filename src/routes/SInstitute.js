@@ -36,8 +36,8 @@ function SInstitute() {
                 <h1>Select Institute</h1>        
             </div>   
             {role === "3" ? (
-                <div className="si-button add">
-                    <button onClick={openPopup}>Add Institute +</button>
+                <div className="si-button">
+                    <button className='add' onClick={openPopup} >Add Institute +</button>
                 </div>                 
             ) : ('')} 
 
