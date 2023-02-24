@@ -43,7 +43,6 @@ function ICard (props) {
                 console.log(err);
             });
         }
-
     }
 
     const handleCardClick = () => {

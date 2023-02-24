@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from "react";
 import useFetch from "../myHooks/useFetch";
+import Popup from "../popup-components/Popup";
 import { AiOutlineEdit } from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 import BSRooms from "./BSRooms";
 import BSDoors from "./BSDoors";
@@ -11,7 +13,10 @@ function BSetting() {
     const [buildingData] = useFetch('https://rest.distressing.dev/building/info')
     const [selected, setSelected] = useState(0)
     const [sName, setSName] = useState(null)
-    const [currentData, setCurrentData] = useState(null)
+
+    const [ppAdd, setPPAdd] = useState(false)
+    const [ppEdit, setPPEdit] = useState(false)
+    const [newName, setNewName] = useState(null)
 
     const menuItems = ["Rooms", "Doors", "Lights"];
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
@@ -19,45 +24,75 @@ function BSetting() {
     useEffect(() => {
         if(buildingData !== null){
             setSelected(buildingData.buildings[0].buildingID)
-            fetchData()
         }
     }, [buildingData])
 
     useEffect(() => {
-        fetchData()
+        if(buildingData !== null){
+            let i = buildingData.buildings.map(e => e.buildingID).indexOf(selected);
+            setSName(buildingData.buildings[i].buildingName)
+        }
     }, [selected])
 
-    const fetchData = () => {
-        Promise.all([
-            fetch('https://rest.distressing.dev/room/info?buildingID=' + parseInt(selected), {credentials: "include"})
-            .then(res => res.json()),
-            ])
+    const handleChangeDropdown = (e) => {
+        setSelected(e.target.value)
+    }
+
+    const openPPAdd = () => {
+        setPPAdd(true)
+    }
+
+    const openPPEdit = () => {
+        setPPEdit(true)
+    }
+
+    const handleSubmitEdit = () => {
+        fetch('', {credentials: 'include'})
+        .then(res => res.json())
         .then((data) => {
-            console.log(data)
-            setCurrentData(data[0].rooms)
+            console.log(data);
         })
         .catch((err) => {
             console.log(err);
         });
     }
 
-    const handleChangeDropdown = (e) => {
-        setSelected(e.target.value)
+    const handleSubmitAdd = () => {
+        fetch('', {credentials: 'include'})
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const handleDelete = () => {
+        if (window.confirm('Are you sure you wish to delete this building?')){
+            fetch('', {credentials: 'include'})
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
     }
 
     const handleClickMenu = (s) => {
         const newSettingStr = s; 
         setSettingStr(newSettingStr);
-        console.log(newSettingStr)
     }
 
     const bsSetting = () => {
         if(settingStr === menuItems[0]) {
-            return <BSRooms id={selected}/>
+            return <BSRooms id={selected} name={sName}/>
         } else if(settingStr === menuItems[1]) {
-            return <BSDoors id={selected}/>
+            return <BSDoors id={selected} name={sName}/>
         } else if(settingStr === menuItems[2]) {
-            return <BSLights id={selected}/>
+            return <BSLights id={selected} name={sName}/>
         }
             
     }
@@ -75,9 +110,44 @@ function BSetting() {
                             })}
                         </select>
                     </div>
-                    <button className="b-button edit"><span>Edit</span><AiOutlineEdit/></button>
-                    <button className="b-button add right">Add Building +</button>                        
+                    <button className="b-button edit" onClick={openPPEdit}><span>Edit</span><AiOutlineEdit/></button>
+                    <button className="b-button add right" onClick={openPPAdd}>Add Building +</button>                        
                 </div>
+
+                <Popup trigger={ppEdit} setTrigger={setPPEdit}>
+                    <div className='si-popup'>
+                        <p>Edit {sName}</p>
+                        <div className='si-popup-divider'></div>  
+                        <div className='si-form'>
+                            <form onSubmit={handleSubmitEdit}>
+                            <label><p>Change Name:</p></label>
+                            <input type="text" onChange={e => setNewName(e.target.value)} />
+
+                            <div className='ic-buttons'>
+                                <button type="submit" className='ic-save'>Save</button>  
+                                <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
+                            </div>
+                            </form>  
+                        </div>   
+                    </div>
+                </Popup>
+
+                <Popup trigger={ppAdd} setTrigger={setPPAdd}>
+                    <div className='si-popup'>
+                        <p>Create Buidliing</p>
+                        <div className='si-popup-divider'></div>  
+                        <div className='si-form'>
+                            <form onSubmit={handleSubmitAdd}>
+                            <label><p>Name:</p></label>
+                            <input type="text" onChange={e => setNewName(e.target.value)} required />
+
+                            {/*add map for location*/}
+
+                            <button type="submit" className='form-button'>Add</button>            
+                            </form>  
+                        </div>                  
+                    </div>
+                </Popup> 
 
                 <div className="bs-menu">
                     <ul>

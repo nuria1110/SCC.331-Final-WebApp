@@ -326,6 +326,31 @@ input[type=number]{
   margin-top: 1rem;
 }
 
+.bs-rooms {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.bsr {
+  margin-top: 1rem;
+}
+
+.bsr>p {
+  font-size: 16px;
+  margin-left: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.r-button {
+  padding: 2px 15px;
+  margin-right: 1rem;
+}
+
+.room-divider {
+  border-bottom: 1px solid #575A6B;
+  margin-right: 1rem;
+}
+
 
 @media only screen and (min-width: 768px) {
 
@@ -375,6 +400,20 @@ input[type=number]{
     font-size: medium;
   }
 
+  .bs-rooms {
+    margin-left: 1rem;
+  }
+
+  .bsr>p{
+    font-size: 17px;
+  }
+
+  .r-button {
+    padding: 4px 15px;
+    margin-right: 1rem;
+  }
+
+
 }
 
 
@@ -397,7 +436,10 @@ input[type=number]{
     padding: 5px 28px;
     font-size: 16px;
   }
-
+  
+  .bsr>p{
+    font-size: 19px;
+  }
 
 }
 
