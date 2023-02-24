@@ -65,8 +65,8 @@ function SInstitute() {
                             </>)
                         })}
                     </>) 
-                    : (<p>There are no existing Institutes.</p>)}
-                </>) : (<p>Loading...</p>)}
+                    : (<p className='comment'>There are no existing Institutes.</p>)}
+                </>) : (<p className='comment'>Loading...</p>)}
             </div>           
         </div>
     </>)

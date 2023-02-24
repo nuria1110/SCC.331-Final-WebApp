@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import useFetch from "../myHooks/useFetch";
 import Popup from "../popup-components/Popup";
+import BSSensors from "./BSSensors";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
@@ -10,6 +11,7 @@ function BSRooms(props) {
 
     const [ppAdd, setPPAdd] = useState(false)
     const [ppEdit, setPPEdit] = useState(false)
+    const [ppSensors, setPPSensors] = useState(false)
     const [newName, setNewName] = useState(null)
 
     const [editID, setEditID] = useState(null)
@@ -23,6 +25,12 @@ function BSRooms(props) {
         setEditID(id)
         setEditName(name)
         setPPEdit(true)
+    }
+
+    const openPPSensors = (id, name) => {
+        setEditID(id)
+        setEditName(name)
+        setPPSensors(true)
     }
 
     const handleSubmitEdit = () => {
@@ -48,7 +56,7 @@ function BSRooms(props) {
     }
 
     const handleDelete = () => {
-        if (window.confirm('Are you sure you wish to delete this room?')){
+        if (window.confirm('Are you sure you wish to delete this room?\nThis action will also remove its sensors.')){
             fetch('', {credentials: 'include'})
             .then(res => res.json())
             .then((data) => {
@@ -97,22 +105,25 @@ function BSRooms(props) {
                 </div>
             </Popup>
 
+            <Popup trigger={ppSensors} setTrigger={setPPSensors}>
+                <BSSensors id={editID} name={editName} isPopup={true}/>
+            </Popup>
+
             {roomData !== null ? (<>
                 {roomData.rooms.length > 0 ? (<>
                     {roomData.rooms.map((item) => {
                         return(<>
                             <div className="bsr">
-                                <button className="r-button edit right" onClick={() => openPPEdit(item.roomID, item.roomName)}><span>Edit</span><AiOutlineEdit/></button>   
+                                <button className="r-button grey right" onClick={() => openPPSensors(item.roomID, item.roomName)}>Sensors <AiOutlineEdit/></button> 
+                                <button className="r-button edit right" onClick={() => openPPEdit(item.roomID, item.roomName)}><span>Edit</span><AiOutlineEdit/></button>      
                                 <p>{item.roomName}</p>
                                 <div className='room-divider'></div>
-                                {/*sensors*/}
+                                <BSSensors id={item.roomID} isPopup={false}/>
                             </div>
-
-
                         </>)
                     })}
-                </>) : (<p>There are no rooms in this building.</p>)}
-            </>) : (<p>Loading...</p>)}
+                </>) : (<p className="comment">There are no rooms in this building.</p>)}
+            </>) : (<p className="comment">Loading...</p>)}
         </div>
     )
 }

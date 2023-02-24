@@ -17,6 +17,8 @@ function BSetting() {
     const [ppAdd, setPPAdd] = useState(false)
     const [ppEdit, setPPEdit] = useState(false)
     const [newName, setNewName] = useState(null)
+    const [newLat, setNewLat] = useState(null)
+    const [newLong, setNewLong] = useState(null)
 
     const menuItems = ["Rooms", "Doors", "Lights"];
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
@@ -45,7 +47,8 @@ function BSetting() {
     const openPPEdit = () => {
         setPPEdit(true)
     }
-
+    
+    //TODO
     const handleSubmitEdit = () => {
         fetch('', {credentials: 'include'})
         .then(res => res.json())
@@ -58,10 +61,11 @@ function BSetting() {
     }
 
     const handleSubmitAdd = () => {
-        fetch('', {credentials: 'include'})
+        fetch('https://rest.distressing.dev/building/add?name='+newName+'&lat='+newLat+'&long='+newLong, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
             console.log(data);
+            alert(newName+" has been added successfully.")
         })
         .catch((err) => {
             console.log(err);
@@ -69,8 +73,8 @@ function BSetting() {
     }
 
     const handleDelete = () => {
-        if (window.confirm('Are you sure you wish to delete this building?')){
-            fetch('', {credentials: 'include'})
+        if (window.confirm('Are you sure you wish to delete this building?\nThis will also delete its rooms and sensors.')){
+            fetch('https://rest.distressing.dev/building/delete?buildingID='+parseInt(selected), {credentials: 'include'})
             .then(res => res.json())
             .then((data) => {
                 console.log(data);
@@ -123,6 +127,8 @@ function BSetting() {
                             <label><p>Change Name:</p></label>
                             <input type="text" onChange={e => setNewName(e.target.value)} />
 
+                            {/*TODO - add map for location*/}
+
                             <div className='ic-buttons'>
                                 <button type="submit" className='ic-save'>Save</button>  
                                 <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
@@ -141,7 +147,7 @@ function BSetting() {
                             <label><p>Name:</p></label>
                             <input type="text" onChange={e => setNewName(e.target.value)} required />
 
-                            {/*add map for location*/}
+                            {/*TODO - add map for location*/}
 
                             <button type="submit" className='form-button'>Add</button>            
                             </form>  
@@ -167,7 +173,7 @@ function BSetting() {
                 {bsSetting()}
         
             </div>                                 
-        </>) : (<p>Loading....</p>)}
+        </>) : (<p className="comment">Loading....</p>)}
     </>)
 }
 

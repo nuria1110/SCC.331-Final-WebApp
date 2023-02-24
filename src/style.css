@@ -30,12 +30,31 @@
   background-color: #08314e;
 }
 
+[class*="grey"] {
+  border: 1px solid #575A6B;
+  background-color: #575A6B;
+}
+
+[class*="grey"]:hover {
+  border: 1px solid #3e404b;
+  background-color: #3e404b;
+}
+
+[class*="red"] {
+  border: 1px solid #6d1c1c;
+  background-color: #6d1c1c;
+}
+
 [class*="right"] {
   float: right;
 }
 
 [class*="left"] {
   float: left;
+}
+
+.comment{
+  margin: 1rem;
 }
 
 button {
@@ -156,15 +175,12 @@ input[type=number]{
   display: flex;
   margin-bottom: 1rem;
   padding: 6px 15px;
-  border: 1px solid #575A6B;
-  background-color: #575A6B;
   justify-content: center;
   font-size: medium;
 }
 
-.db-button:hover {
-  border: 1px solid #3e404b;
-  background-color: #3e404b;
+.db-button>span {
+  margin-left: 0.5rem;
 }
 
 .db-card{
@@ -275,7 +291,8 @@ input[type=number]{
   margin-top: 0.5rem;
 }
 
-.admin-menu li:hover {
+.admin-menu li:hover,
+.bs-menu li:hover{
   background-color: #575A6B;
   border: 1px solid #575A6B;
 } 
@@ -318,7 +335,7 @@ input[type=number]{
 }
 
 .b-button{
-  padding: 6px 15px;
+  padding: 5px 15px;
   margin-bottom: 0.5rem;
 }
 
@@ -332,23 +349,45 @@ input[type=number]{
 }
 
 .bsr {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .bsr>p {
   font-size: 16px;
   margin-left: 0.5rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .r-button {
   padding: 2px 15px;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 
 .room-divider {
   border-bottom: 1px solid #575A6B;
   margin-right: 1rem;
+}
+
+.bs-sensors {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: small;
+}
+
+.a-sensor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.a-sensor>input {
+  display: flex;
+  width: 30%;
+  margin: 0.5rem;
+}
+
+.e-sensor {
+  margin: 1rem;
 }
 
 
@@ -409,10 +448,15 @@ input[type=number]{
   }
 
   .r-button {
-    padding: 4px 15px;
+    padding: 3px 15px;
     margin-right: 1rem;
   }
 
+  .bs-sensors {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-size: medium;
+  }
 
 }
 
