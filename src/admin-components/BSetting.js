@@ -8,6 +8,9 @@ import BSRooms from "./BSRooms";
 import BSDoors from "./BSDoors";
 import BSLights from "./BSLights";
 
+import BSMapView from "../map-components/BSMapView";
+import { useLocation } from '../myHooks/useLocation';
+
 function BSetting() {
 
     const [buildingData] = useFetch('https://rest.distressing.dev/building/info')
@@ -16,13 +19,15 @@ function BSetting() {
 
     const [ppAdd, setPPAdd] = useState(false)
     const [ppEdit, setPPEdit] = useState(false)
-    const [newName, setNewName] = useState(null)
-    const [newLat, setNewLat] = useState(null)
-    const [newLong, setNewLong] = useState(null)
+
 
     const menuItems = ["Rooms", "Doors", "Lights"];
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
-
+    
+    const [newName, setNewName] = useState(null)
+    const { getLatLong } = useLocation()
+    const latLong = getLatLong()    
+    
     useEffect(() => {
         if(buildingData !== null){
             setSelected(buildingData.buildings[0].buildingID)
@@ -61,15 +66,18 @@ function BSetting() {
     }
 
     const handleSubmitAdd = () => {
-        fetch('https://rest.distressing.dev/building/add?name='+newName+'&lat='+newLat+'&long='+newLong, {credentials: 'include'})
-        .then(res => res.json())
-        .then((data) => {
-            console.log(data);
-            alert(newName+" has been added successfully.")
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+        if (latLong !== null) {
+            fetch('https://rest.distressing.dev/building/add?name='+newName+'&lat='+latLong[0]+'&long='+latLong[1], {credentials: 'include'})
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data);
+                alert(newName+" has been added successfully.")
+            })
+            .catch((err) => {
+                console.log(err);
+            });            
+        }
+
     }
 
     const handleDelete = () => {
@@ -148,6 +156,7 @@ function BSetting() {
                             <input type="text" onChange={e => setNewName(e.target.value)} required />
 
                             {/*TODO - add map for location*/}
+                            <BSMapView/>
 
                             <button type="submit" className='form-button'>Add</button>            
                             </form>  

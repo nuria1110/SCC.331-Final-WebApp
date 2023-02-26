@@ -17,12 +17,12 @@ export const SidebarDataAdmin = [
     icon: <BsGraphUp />,
     cName: "nav-text",
   },  
-  // {
-  //   title: "Map",
-  //   path: "/map",
-  //   icon: <FiMapPin />,
-  //   cName: "nav-text",
-  // },
+  {
+    title: "Map",
+    path: "/map",
+    icon: <FiMapPin />,
+    cName: "nav-text",
+  },
   {
     title: "Admin",
     path: "/admin",

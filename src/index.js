@@ -12,6 +12,7 @@ import SInstitute from "./routes/SInstitute";
 import Navbar from './nv-components/Navbar';
 import Dashboard from './routes/Dashboard';
 import Grafana from './routes/Grafana';
+import Map from './routes/Map';
 import Admin from './routes/Admin';
 import "./style.css";
 
@@ -42,13 +43,13 @@ const router = createBrowserRouter([
                 path: "dashboard",
                 element: <Dashboard />,
             },
-            // {
-            //     path: "map",
-            //     element: <Map />,
-            // },
             {
                 path: "data",
                 element: <Grafana />,
+            },            
+            {
+                path: "map",
+                element: <Map />,
             },
             {
                 path: "admin",
