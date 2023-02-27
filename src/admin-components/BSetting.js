@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from "react";
 import useFetch from "../myHooks/useFetch";
+import { useUserData } from '../myHooks/useUserData';
+
 import Popup from "../popup-components/Popup";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -12,21 +14,23 @@ import BSMapView from "../map-components/BSMapView";
 import { useLocation } from '../myHooks/useLocation';
 
 function BSetting() {
+    const { getInstituteData } = useUserData()
+    const instituteData = getInstituteData()
 
     const [buildingData] = useFetch('https://rest.distressing.dev/building/info')
     const [selected, setSelected] = useState(0)
     const [sName, setSName] = useState(null)
+    const [sLat, setSLat] = useState(null)
+    const [sLong, setSLong] = useState(null)
 
     const [ppAdd, setPPAdd] = useState(false)
     const [ppEdit, setPPEdit] = useState(false)
 
+    const [newName, setNewName] = useState(null)
+    const { getLatLong } = useLocation()   
 
     const menuItems = ["Rooms", "Doors", "Lights"];
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
-    
-    const [newName, setNewName] = useState(null)
-    const { getLatLong } = useLocation()
-    const latLong = getLatLong()    
     
     useEffect(() => {
         if(buildingData !== null){
@@ -38,6 +42,9 @@ function BSetting() {
         if(buildingData !== null){
             let i = buildingData.buildings.map(e => e.buildingID).indexOf(selected);
             setSName(buildingData.buildings[i].buildingName)
+            setNewName(buildingData.buildings[i].buildingName)
+            setSLat(buildingData.buildings[i].latitude)
+            setSLong(buildingData.buildings[i].longitude)
         }
     }, [selected])
 
@@ -53,12 +60,13 @@ function BSetting() {
         setPPEdit(true)
     }
     
-    //TODO
     const handleSubmitEdit = () => {
-        fetch('', {credentials: 'include'})
+        const latLong = getLatLong() 
+        fetch('https://rest.distressing.dev/building/update?buildingID='+selected+'&name='+newName+'&lat='+latLong[0]+'&long='+latLong[1], {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
             console.log(data);
+            data.success && alert("Update successfull.")
         })
         .catch((err) => {
             console.log(err);
@@ -66,8 +74,9 @@ function BSetting() {
     }
 
     const handleSubmitAdd = () => {
+        const latLong = getLatLong() 
         if (latLong !== null) {
-            fetch('https://rest.distressing.dev/building/add?name='+newName+'&lat='+latLong[0]+'&long='+latLong[1], {credentials: 'include'})
+            fetch('https://rest.distressing.dev/building/add?instituteID='+instituteData[0]+'&name='+newName+'&lat='+latLong[0]+'&long='+latLong[1], {credentials: 'include'})
             .then(res => res.json())
             .then((data) => {
                 console.log(data);
@@ -131,14 +140,14 @@ function BSetting() {
                         <p>Edit {sName}</p>
                         <div className='si-popup-divider'></div>  
                         <div className='si-form'>
-                            <form onSubmit={handleSubmitEdit}>
+                            <form>
                             <label><p>Change Name:</p></label>
-                            <input type="text" onChange={e => setNewName(e.target.value)} />
+                            <input type="text" placeholder={sName} onChange={e => setNewName(e.target.value)} />
 
-                            {/*TODO - add map for location*/}
+                            <BSMapView type="edit" lat={parseFloat(sLat)} long={parseFloat(sLong)}/>
 
                             <div className='ic-buttons'>
-                                <button type="submit" className='ic-save'>Save</button>  
+                                <button className='ic-save' onClick={handleSubmitEdit}>Save</button>  
                                 <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
                             </div>
                             </form>  
@@ -148,15 +157,14 @@ function BSetting() {
 
                 <Popup trigger={ppAdd} setTrigger={setPPAdd}>
                     <div className='si-popup'>
-                        <p>Create Buidliing</p>
+                        <p>Create Building</p>
                         <div className='si-popup-divider'></div>  
                         <div className='si-form'>
                             <form onSubmit={handleSubmitAdd}>
                             <label><p>Name:</p></label>
                             <input type="text" onChange={e => setNewName(e.target.value)} required />
 
-                            {/*TODO - add map for location*/}
-                            <BSMapView/>
+                            <BSMapView type="add"/>
 
                             <button type="submit" className='form-button'>Add</button>            
                             </form>  

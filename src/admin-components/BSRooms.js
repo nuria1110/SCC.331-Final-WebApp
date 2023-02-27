@@ -12,8 +12,8 @@ function BSRooms(props) {
     const [ppAdd, setPPAdd] = useState(false)
     const [ppEdit, setPPEdit] = useState(false)
     const [ppSensors, setPPSensors] = useState(false)
-    const [newName, setNewName] = useState(null)
 
+    const [newName, setNewName] = useState(null)
     const [editID, setEditID] = useState(null)
     const [editName, setEditName] = useState(null)
 
@@ -34,7 +34,7 @@ function BSRooms(props) {
     }
 
     const handleSubmitEdit = () => {
-        fetch('', {credentials: 'include'})
+        fetch('https://rest.distressing.dev/room/update?name='+newName+'&roomID='+editID, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
             console.log(data);
@@ -45,7 +45,7 @@ function BSRooms(props) {
     }
 
     const handleSubmitAdd = () => {
-        fetch('', {credentials: 'include'})
+        fetch('https://rest.distressing.dev/room/add?name='+newName+'&buildingID='+props.id, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
             console.log(data);
@@ -57,7 +57,7 @@ function BSRooms(props) {
 
     const handleDelete = () => {
         if (window.confirm('Are you sure you wish to delete this room?\nThis action will also remove its sensors.')){
-            fetch('', {credentials: 'include'})
+            fetch('https://rest.distressing.dev/room/delete?roomID='+ editID, {credentials: 'include'})
             .then(res => res.json())
             .then((data) => {
                 console.log(data);
@@ -92,12 +92,12 @@ function BSRooms(props) {
                     <p>Edit {editName}</p>
                     <div className='si-popup-divider'></div>  
                     <div className='si-form'>
-                        <form onSubmit={handleSubmitEdit}>
+                        <form>
                         <label><p>Change Name:</p></label>
                         <input type="text" onChange={e => setNewName(e.target.value)} />
 
                         <div className='ic-buttons'>
-                            <button type="submit" className='ic-save'>Save</button>  
+                            <button className='ic-save' onClick={handleSubmitEdit}>Save</button> 
                             <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
                         </div>
                         </form>  

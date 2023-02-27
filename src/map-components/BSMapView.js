@@ -5,7 +5,7 @@ import * as L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
 import { useLocation } from '../myHooks/useLocation';
 
-function BSMapView() {
+function BSMapView(props) {
 
     const mapContainer = useRef();
     const { setLatLong } = useLocation()
@@ -14,14 +14,21 @@ function BSMapView() {
 
     useEffect(()=>{
 
-        const map = L.map(mapContainer.current).setView([51.505, -0.09], 13);
+        const map = L.map(mapContainer.current).setView([54.010372, -2.785492], 14);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
-
+        
         var marker;
+        if(props.type === "edit"){
+            marker = L.marker([props.lat, props.long]).addTo(map);
+            setLat(props.lat)
+            setLong(props.long)
+            setLatLong(props.lat, props.long)
+        }
+        
         function onMapClick(e) {  
             try{
                 map.removeLayer(marker)
