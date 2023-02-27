@@ -79,6 +79,8 @@ input[type=number]{
   border-radius: 8px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .form-button{
@@ -143,7 +145,7 @@ input[type=number]{
   width: fit-content;
   font-size: small;
   padding: 6px 15px;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 /*Outlet CSS*/
@@ -273,7 +275,6 @@ input[type=number]{
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-  
   margin-right: 0.5rem;
 }
 
@@ -348,19 +349,23 @@ input[type=number]{
   margin-top: 1rem;
 }
 
-.bs-rooms {
+.bsr, .bsd {
   width: 100%;
   margin-top: 0.5rem;
 }
 
-.bsr {
+.bs-item {
   margin-top: 1.5rem;
 }
 
-.bsr>p {
+.bs-item>p {
   font-size: 16px;
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.bs-item>.item-detail {
+  font-size: 14px;
 }
 
 .r-button {
@@ -388,11 +393,16 @@ input[type=number]{
 .a-sensor>input {
   display: flex;
   width: 30%;
-  margin: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .e-sensor {
   margin: 1rem;
+}
+
+.e-sensor>button {
+  margin-right: 0;
 }
 
 
@@ -444,11 +454,11 @@ input[type=number]{
     font-size: medium;
   }
 
-  .bs-rooms {
+  .bs-content {
     margin-left: 1rem;
   }
 
-  .bsr>p{
+  .bs-item>p{
     font-size: 17px;
   }
 
@@ -486,8 +496,13 @@ input[type=number]{
     font-size: 16px;
   }
   
-  .bsr>p{
+  .bs-item>p{
     font-size: 19px;
+  }
+
+  .bs-item>.item-detail {
+    margin-top: 0.75rem;
+    margin-left: 0.75rem;
   }
 
 }

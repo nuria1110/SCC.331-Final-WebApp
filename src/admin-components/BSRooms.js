@@ -69,7 +69,7 @@ function BSRooms(props) {
     }
 
     return (
-        <div className="bs-rooms">
+        <div className="bsr">
             <button className="r-button add" onClick={openPPAdd}>Add Room +</button> 
 
             <Popup trigger={ppAdd} setTrigger={setPPAdd}>
@@ -78,10 +78,10 @@ function BSRooms(props) {
                     <div className='si-popup-divider'></div>  
                     <div className='si-form'>
                         <form onSubmit={handleSubmitAdd}>
-                        <label><p>Name:</p></label>
-                        <input type="text" onChange={e => setNewName(e.target.value)} required />
+                            <label><p>Name:</p></label>
+                            <input type="text" onChange={e => setNewName(e.target.value)} required />
 
-                        <button type="submit" className='form-button'>Add</button>            
+                            <button type="submit" className='form-button'>Add</button>            
                         </form>  
                     </div>                  
                 </div>
@@ -93,13 +93,13 @@ function BSRooms(props) {
                     <div className='si-popup-divider'></div>  
                     <div className='si-form'>
                         <form>
-                        <label><p>Change Name:</p></label>
-                        <input type="text" onChange={e => setNewName(e.target.value)} />
+                            <label><p>Change Name:</p></label>
+                            <input type="text" placeholder={editName} onChange={e => setNewName(e.target.value)} />
 
-                        <div className='ic-buttons'>
-                            <button className='ic-save' onClick={handleSubmitEdit}>Save</button> 
-                            <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
-                        </div>
+                            <div className='ic-buttons'>
+                                <button className='ic-save' onClick={handleSubmitEdit}>Save</button> 
+                                <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
+                            </div>
                         </form>  
                     </div>   
                 </div>
@@ -113,7 +113,7 @@ function BSRooms(props) {
                 {roomData.rooms.length > 0 ? (<>
                     {roomData.rooms.map((item) => {
                         return(<>
-                            <div className="bsr">
+                            <div className="bs-item">
                                 <button className="r-button grey right" onClick={() => openPPSensors(item.roomID, item.roomName)}>Sensors <AiOutlineEdit/></button> 
                                 <button className="r-button edit right" onClick={() => openPPEdit(item.roomID, item.roomName)}><span>Edit</span><AiOutlineEdit/></button>      
                                 <p>{item.roomName}</p>

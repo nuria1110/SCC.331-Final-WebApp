@@ -52,10 +52,9 @@ function BSSensors(props) {
                         <form className='e-sensor'>
                             {sensors.sensors.map((item) => {
                                 return(<>
-                                        <p key={item.sensorID}>Sensor {item.sensorID}   
-                                        <button className='r-button red right' onClick={() => handleRemoveSensor(item.sensorID)}>Remove</button>                             
-                                        </p> 
-                                        <div className='si-popup-divider'></div>                                     
+                                    <button className='r-button red right' onClick={() => handleRemoveSensor(item.sensorID)}>Remove</button>   
+                                    <p key={item.sensorID}>Sensor {item.sensorID}</p> 
+                                    <div className='si-popup-divider'></div>                                     
                                 </>)
                             })}                        
                         </form>
