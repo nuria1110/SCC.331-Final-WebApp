@@ -73,8 +73,8 @@ function ICard (props) {
                     <input type="text" onChange={e => setNewName(e.target.value)} />
 
                     <div className='ic-buttons'>
-                        <button type="submit" className='ic-save'>Save</button>  
-                        <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
+                        <button type="submit" className='ic-save add'>Save</button>  
+                        <button className='ic-delete red' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
                     </div>
                     </form>  
                 </div>             

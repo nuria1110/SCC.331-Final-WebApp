@@ -147,8 +147,8 @@ function BSetting() {
                             <BSMapView type="edit" lat={parseFloat(sLat)} long={parseFloat(sLong)}/>
 
                             <div className='ic-buttons'>
-                                <button className='ic-save' onClick={handleSubmitEdit}>Save</button>  
-                                <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
+                                <button className='ic-save add' onClick={handleSubmitEdit}>Save</button>  
+                                <button className='ic-delete red' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
                             </div>
                             </form>  
                         </div>   
@@ -166,7 +166,7 @@ function BSetting() {
 
                             <BSMapView type="add"/>
 
-                            <button type="submit" className='form-button'>Add</button>            
+                            <button type="submit" className='form-button add'>Add</button>            
                             </form>  
                         </div>                  
                     </div>

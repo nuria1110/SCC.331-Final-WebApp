@@ -48,8 +48,8 @@ function BSMapView(props) {
 
     return (<>
         <p>Location:</p>
-        <p>{lat}</p>
-        <p>{long}</p>
+        {/* <p>{lat}</p>
+        <p>{long}</p> */}
         <div style={{padding: 0, margin: 0, width: "100%", height: "50vh",}}
              ref={el => mapContainer.current = el}>
         </div>    

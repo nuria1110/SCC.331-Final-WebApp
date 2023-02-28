@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import useFetch from "../myHooks/useFetch";
 import Popup from "../popup-components/Popup";
-import BSSensors from "./BSSensors";
+import BSSensor from "./BSSensor";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
@@ -81,7 +81,7 @@ function BSRooms(props) {
                             <label><p>Name:</p></label>
                             <input type="text" onChange={e => setNewName(e.target.value)} required />
 
-                            <button type="submit" className='form-button'>Add</button>            
+                            <button type="submit" className='form-button add'>Add</button>            
                         </form>  
                     </div>                  
                 </div>
@@ -97,8 +97,8 @@ function BSRooms(props) {
                             <input type="text" placeholder={editName} onChange={e => setNewName(e.target.value)} />
 
                             <div className='ic-buttons'>
-                                <button className='ic-save' onClick={handleSubmitEdit}>Save</button> 
-                                <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
+                                <button className='ic-save add' onClick={handleSubmitEdit}>Save</button> 
+                                <button className='ic-delete red' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
                             </div>
                         </form>  
                     </div>   
@@ -106,7 +106,7 @@ function BSRooms(props) {
             </Popup>
 
             <Popup trigger={ppSensors} setTrigger={setPPSensors}>
-                <BSSensors id={editID} name={editName} isPopup={true}/>
+                <BSSensor id={editID} name={editName} isPopup={true}/>
             </Popup>
 
             {roomData !== null ? (<>
@@ -118,7 +118,7 @@ function BSRooms(props) {
                                 <button className="r-button edit right" onClick={() => openPPEdit(item.roomID, item.roomName)}><span>Edit</span><AiOutlineEdit/></button>      
                                 <p>{item.roomName}</p>
                                 <div className='room-divider'></div>
-                                <BSSensors id={item.roomID} isPopup={false}/>
+                                <BSSensor id={item.roomID} isPopup={false}/>
                             </div>
                         </>)
                     })}

@@ -46,6 +46,11 @@
 }
 
 [class*="red"] {
+  border: 1px solid #7E0909;
+  background-color: #7E0909;
+}
+
+[class*="red"]:hover {
   border: 1px solid #6d1c1c;
   background-color: #6d1c1c;
 }
@@ -349,7 +354,7 @@ input[type=number]{
   margin-top: 1rem;
 }
 
-.bsr, .bsd {
+.bsr, .bsd, .bsl {
   width: 100%;
   margin-top: 0.5rem;
 }
@@ -404,6 +409,39 @@ input[type=number]{
 .e-sensor>button {
   margin-right: 0;
 }
+
+.bs-lights {
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+}
+
+.bs-lights>p{
+  margin-top: 0.5rem;
+}
+
+.l-button {
+  color: white;
+  padding: 13px 10px;
+  text-decoration: none;
+  outline: none;
+  font-size: 13px;
+  border-radius: 30px;
+  border: 1px solid #232531;
+  background-color: #232531;
+  max-width: 100px;
+  width: 25%;
+  margin-right: 1rem;
+}
+
+.l-button:hover {
+  background-color: #575A6B;
+  border: 1px solid #575A6B;
+} 
+
+.l-button.active {
+  background-color: #3C34A0;
+  border: 1px solid #3C34A0;
+} 
 
 
 @media only screen and (min-width: 768px) {

@@ -34,7 +34,7 @@ function BSDoors(props) {
         setPPUA(true)
     }
 
-
+    //TODO
     const handleSubmitEdit = () => {
         fetch('', {credentials: 'include'})
         .then(res => res.json())
@@ -78,16 +78,16 @@ function BSDoors(props) {
 
         <Popup trigger={ppAdd} setTrigger={setPPAdd}>
             <div className='si-popup'>
-                <p>Add a Door sensor to {props.name}</p>
+                <p>Add a door sensor to {props.name}</p>
                 <div className='si-popup-divider'></div>  
                 <div className='si-form'>
                     <form onSubmit={handleSubmitAdd}>
-                        <label><p>Sensor ID:</p></label>
+                        <label><p>Microbit ID:</p></label>
                         <input type="number" onChange={e => setNewID(e.target.value)} required />
                         <label><p>Name:</p></label>
                         <input type="text" onChange={e => setNewName(e.target.value)} required />
 
-                        <button type="submit" className='form-button'>Add</button>            
+                        <button type="submit" className='form-button add'>Add</button>            
                     </form>  
                 </div>                  
             </div>
@@ -99,14 +99,14 @@ function BSDoors(props) {
                 <div className='si-popup-divider'></div>  
                 <div className='si-form'>
                     <form>
-                        <label><p>Change ID:</p></label>
-                        <input type="number" placeholder={editID} onChange={e => setNewID(e.target.value)} />
+                        {/* <label><p>Building: </p></label>
+                        <input type="text" onChange={e => setNewID(e.target.value)} required /> */}
                         <label><p>Change Name:</p></label>
                         <input type="text" placeholder={editName} onChange={e => setNewName(e.target.value)} />
 
                         <div className='ic-buttons'>
-                            <button className='ic-save' onClick={handleSubmitEdit}>Save</button> 
-                            <button className='ic-delete' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
+                            <button className='ic-save add' onClick={handleSubmitEdit}>Save</button> 
+                            <button className='ic-delete red' onClick={handleDelete}><span>Delete</span><RiDeleteBin6Line/></button>                         
                         </div>
                     </form>  
                 </div>   
