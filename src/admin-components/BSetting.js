@@ -17,7 +17,7 @@ function BSetting() {
     const { getInstituteData } = useUserData()
     const instituteData = getInstituteData()
 
-    const [buildingData] = useFetch('https://rest.distressing.dev/building/info')
+    const [buildingData] = useFetch('https://rest.distressing.dev/building/info?instituteID='+instituteData[0])
     const [selected, setSelected] = useState(0)
     const [sName, setSName] = useState(null)
     const [sLat, setSLat] = useState(null)
@@ -33,18 +33,22 @@ function BSetting() {
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
     
     useEffect(() => {
-        if(buildingData !== null){
-            setSelected(buildingData.buildings[0].buildingID)
+        if(buildingData !== null ){
+            if(buildingData.buildings.length > 0) {
+                setSelected(buildingData.buildings[0].buildingID)
+            }
         }
     }, [buildingData])
 
     useEffect(() => {
         if(buildingData !== null){
-            let i = buildingData.buildings.map(e => e.buildingID).indexOf(selected);
-            setSName(buildingData.buildings[i].buildingName)
-            setNewName(buildingData.buildings[i].buildingName)
-            setSLat(buildingData.buildings[i].latitude)
-            setSLong(buildingData.buildings[i].longitude)
+            if(buildingData.buildings.length > 0) {
+                let i = buildingData.buildings.map(e => e.buildingID).indexOf(selected);
+                setSName(buildingData.buildings[i].buildingName)
+                setNewName(buildingData.buildings[i].buildingName)
+                setSLat(buildingData.buildings[i].latitude)
+                setSLong(buildingData.buildings[i].longitude)                
+            }
         }
     }, [selected])
 
@@ -120,19 +124,28 @@ function BSetting() {
 
     return (<>                
         {buildingData !== null ? (<> 
+
             <div className="bs-content">
                 <div className="b-options">
-                    <div className="s-dropdown">
-                        <select value={selected} onChange={(e) => handleChangeDropdown(e)}>
-                            {buildingData.buildings.map((item) => {
-                                return (
-                                    <option key={item.buildingID} value={item.buildingID}>{item.buildingName}</option>
-                                );
-                            })}
-                        </select>
-                    </div>
-                    <button className="b-button edit" onClick={openPPEdit}><span>Edit</span><AiOutlineEdit/></button>
-                    <button className="b-button add right" onClick={openPPAdd}>Add Building +</button>                        
+                    {buildingData.buildings.length > 0 ? (<>
+                        <div className="s-dropdown">
+                            <select value={selected} onChange={(e) => handleChangeDropdown(e)}>
+                                {buildingData.buildings.map((item) => {
+                                    return (
+                                        <option key={item.buildingID} value={item.buildingID}>{item.buildingName}</option>
+                                    );
+                                })}
+                            </select>
+                        </div>
+                        <button className="b-button edit" onClick={openPPEdit}><span>Edit</span><AiOutlineEdit/></button>  
+                         <button className="b-button add right" onClick={openPPAdd}>Add Building +</button> 
+
+                    </>) : (<>
+                        <p className="comment">There are no buildings in this institute.</p>
+                        <button className="b-button add" onClick={openPPAdd}>Add Building +</button> 
+                    </>)}
+
+                                          
                 </div>
 
                 <Popup trigger={ppEdit} setTrigger={setPPEdit}>
@@ -171,24 +184,25 @@ function BSetting() {
                         </div>                  
                     </div>
                 </Popup> 
-
-                <div className="bs-menu">
-                    <ul>
-                        {menuItems.map((item) => {
-                            return (
-                                <li
-                                    key={item}
-                                    onClick={() => {handleClickMenu(item);}}
-                                    className={`menu-item ${settingStr === item && "active"}`}
-                                    >
-                                    {item}
-                                </li>
-                            );
-                        })}
-                    </ul>  
-                </div>
-                {bsSetting()}
-        
+                
+                {buildingData.buildings.length > 0 ? (<>
+                    <div className="bs-menu">
+                        <ul>
+                            {menuItems.map((item) => {
+                                return (
+                                    <li
+                                        key={item}
+                                        onClick={() => {handleClickMenu(item);}}
+                                        className={`menu-item ${settingStr === item && "active"}`}
+                                        >
+                                        {item}
+                                    </li>
+                                );
+                            })}
+                        </ul>  
+                    </div>
+                    {bsSetting()}                
+                </>) : ('')}
             </div>                                 
         </>) : (<p className="comment">Loading....</p>)}
     </>)
