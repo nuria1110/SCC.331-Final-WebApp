@@ -183,6 +183,11 @@ input[type=number]{
   margin-left: 1rem;
 }
 
+.map-content {
+  display:flex;
+  justify-content: center;
+}
+
 .db-button {
   display: flex;
   margin-bottom: 1rem;
@@ -266,6 +271,19 @@ input[type=number]{
   position: absolute;
   z-index: -1;
   translate: 0rem 3rem;
+}
+
+.leaflet-control {
+  z-index: 0 !important
+}
+
+.leaflet-pane { 
+  z-index: 0 !important
+}
+
+.leaflet-top, 
+.leaflet-bottom {
+  z-index: 0 !important
 }
 
 .admin-divider {

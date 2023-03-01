@@ -18,7 +18,7 @@ export const SidebarDataAdmin = [
     cName: "nav-text",
   },  
   {
-    title: "Map",
+    title: "Location Map",
     path: "/map",
     icon: <FiMapPin />,
     cName: "nav-text",
@@ -38,16 +38,16 @@ export const SidebarDataUser = [
     icon: <MdDashboard />,
     cName: "nav-text",
   },
-  // {
-  //   title: "Graphs & Charts",
-  //   path: "/data",
-  //   icon: <BsGraphUp />,
-  //   cName: "nav-text",
-  // },  
-  // {
-  //   title: "Map",
-  //   path: "/map",
-  //   icon: <FiMapPin />,
-  //   cName: "nav-text",
-  // },
+  {
+    title: "Graphs & Charts",
+    path: "/data",
+    icon: <BsGraphUp />,
+    cName: "nav-text",
+  },  
+  {
+    title: "Location Map",
+    path: "/map",
+    icon: <FiMapPin />,
+    cName: "nav-text",
+  },
 ];
