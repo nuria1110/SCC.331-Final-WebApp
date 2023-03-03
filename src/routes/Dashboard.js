@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useFetch from "../myHooks/useFetch";
 import { useNavigate } from 'react-router-dom';
 import { useUserData } from '../myHooks/useUserData';
@@ -19,7 +19,7 @@ function Dashboard() {
     return (<>
         <div className = "dashboard">
             <div className = "db-intro">
-                <button className='db-button grey' onClick={handleSInstitute}><AiOutlineArrowLeft/><span>Select Institute</span></button>
+                <button className='db-button grey' onClick={handleSInstitute}><AiOutlineArrowLeft/><span>Select Zone</span></button>
                 <h1>Hi!</h1>
                 <h2>Welcome to the {instituteData[1]} Dashboard.</h2>   
             </div>        

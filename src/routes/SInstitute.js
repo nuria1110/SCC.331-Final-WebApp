@@ -33,17 +33,17 @@ function SInstitute() {
     return(<>  
         <div className="sInstitute">
             <div className='si-intro'>
-                <h1>Select Institute</h1>        
+                <h1>Select Zone</h1>        
             </div>   
             {role === "3" ? (
                 <div className="si-button">
-                    <button className='add' onClick={openPopup} >Add Institute +</button>
+                    <button className='add' onClick={openPopup} >Add Zone +</button>
                 </div>                 
             ) : ('')} 
 
             <Popup trigger={popup} setTrigger={setPopup}>
                 <div className='si-popup'>
-                    <p>Create Institute</p>
+                    <p>Create Zone</p>
                     <div className='si-popup-divider'></div>  
                     <div className='si-form'>
                         <form onSubmit={handleSubmit}>
@@ -65,7 +65,7 @@ function SInstitute() {
                             </>)
                         })}
                     </>) 
-                    : (<p className='comment'>There are no existing Institutes.</p>)}
+                    : (<p className='comment'>There are no existing Zones.</p>)}
                 </>) : (<p className='comment'>Loading...</p>)}
             </div>           
         </div>

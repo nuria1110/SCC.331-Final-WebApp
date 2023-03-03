@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import AdminSettings from "../admin-components/AdminSettings";
 
 function Admin () {
-    const menuItems = ["Buildings", "Users", "Microbits"];
+    const menuItems = ["Areas", "Users", "Microbits"];
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
 
     const { getRole } = useUserData()

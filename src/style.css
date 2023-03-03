@@ -78,7 +78,8 @@ span {
 
 input[type=text], 
 input[type=password],
-input[type=number]{
+input[type=number],
+.dl-dropdown>select{
   width: 100%;
   padding: 5px 8px;
   border-radius: 8px;
@@ -86,6 +87,10 @@ input[type=number]{
   box-sizing: border-box;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+input[type=checkbox]{
+  margin-left: 1rem;
 }
 
 .form-button{
@@ -331,7 +336,8 @@ input[type=number]{
   border: 1px solid #575A6B;
 } 
 
-.bs-content {
+.bs-content,
+.us-content {
   width: 100%;
   margin: 0.5rem;
   margin-right: 1rem;
@@ -363,6 +369,21 @@ input[type=number]{
   max-width: 270px;
 }
 
+.sensor-dropdown {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 20%;
+}
+
+.pp-dropdown>select {
+  font-size: 15px;
+  border-radius: 8px;
+  padding: 5px 5px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
 .b-button{
   padding: 5px 15px;
   margin-bottom: 0.5rem;
@@ -377,17 +398,25 @@ input[type=number]{
   margin-top: 0.5rem;
 }
 
-.bs-item {
+.bs-item,
+.us-item {
   margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.bs-item>p {
+.bs-item>p,
+.us-item>p {
   font-size: 16px;
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.bs-item>.item-detail {
+.us-item>p {
+  display: inline;
+}
+
+.bs-item>.item-detail, 
+.us-item>.item-detail{
   font-size: 14px;
 }
 
@@ -398,7 +427,7 @@ input[type=number]{
 
 .room-divider {
   border-bottom: 1px solid #575A6B;
-  margin-right: 1rem;
+  width: 98%;
 }
 
 .bs-sensors {
@@ -461,7 +490,6 @@ input[type=number]{
   border: 1px solid #3C34A0;
 } 
 
-
 @media only screen and (min-width: 768px) {
 
   .si-button {
@@ -493,8 +521,10 @@ input[type=number]{
     font-size: 16px;
   }
 
-  .bs-content {
-    margin: 1rem;
+  .bs-content,
+  .us-content {
+    margin: 1rem; 
+    margin-left: 1rem;
   }
 
   .s-dropdown>select {
@@ -510,17 +540,18 @@ input[type=number]{
     font-size: medium;
   }
 
-  .bs-content {
-    margin-left: 1rem;
-  }
-
-  .bs-item>p{
+  .bs-item>p,
+  .us-item>p{
     font-size: 17px;
   }
 
   .r-button {
     padding: 3px 15px;
     margin-right: 1rem;
+  }
+
+  .room-divider {
+    width: 99%;
   }
 
   .bs-sensors {
@@ -552,7 +583,8 @@ input[type=number]{
     font-size: 16px;
   }
   
-  .bs-item>p{
+  .bs-item>p,
+  .us-item>p{
     font-size: 19px;
   }
 

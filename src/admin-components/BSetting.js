@@ -138,10 +138,10 @@ function BSetting() {
                             </select>
                         </div>
                         <button className="b-button edit" onClick={openPPEdit}><span>Edit</span><AiOutlineEdit/></button>  
-                         <button className="b-button add right" onClick={openPPAdd}>Add Building +</button> 
+                         <button className="b-button add right" onClick={openPPAdd}>Add Area +</button> 
 
                     </>) : (<>
-                        <p className="comment">There are no buildings in this institute.</p>
+                        <p className="comment">There are no areas in this zone.</p>
                         <button className="b-button add" onClick={openPPAdd}>Add Building +</button> 
                     </>)}
 
@@ -170,7 +170,7 @@ function BSetting() {
 
                 <Popup trigger={ppAdd} setTrigger={setPPAdd}>
                     <div className='si-popup'>
-                        <p>Create Building</p>
+                        <p>Create Area</p>
                         <div className='si-popup-divider'></div>  
                         <div className='si-form'>
                             <form onSubmit={handleSubmitAdd}>

@@ -8,7 +8,7 @@ function AdminSettings(props) {
     const [setting, setSetting] = useState(null)
 
     useEffect(() => {
-        if (props.s === "Buildings"){
+        if (props.s === "Areas"){
             setSetting(<BSetting/>)
         } else if (props.s === "Users") {
             setSetting(<USetting/>)

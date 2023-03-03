@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import useFetch from "../myHooks/useFetch";
 import Popup from "../popup-components/Popup";
 import BSSensor from "./BSSensor";
@@ -122,7 +122,7 @@ function BSRooms(props) {
                             </div>
                         </>)
                     })}
-                </>) : (<p className="comment">There are no rooms in this building.</p>)}
+                </>) : (<p className="comment">There are no rooms in this area.</p>)}
             </>) : (<p className="comment">Loading...</p>)}
         </div>
     )

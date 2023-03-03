@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useFetch from "../myHooks/useFetch";
 
 function BSSensors(props) {
   
     const [sensors] = useFetch('https://rest.distressing.dev/room/sensors?roomID=' + props.id)
+    const [nullMicrobits] = useFetch('https://rest.distressing.dev/microbit/null')
+    const [selected, setSelected] = useState(0)
 
-    const [newSensor, setNewSensor] = useState(null)
+    useEffect(() => {
+        if(nullMicrobits !== null ){
+            if(nullMicrobits.microbits.length > 0) {
+                setSelected(nullMicrobits.microbits[0].microbitID)
+            }
+        }
+    }, [nullMicrobits])
 
+    const handleChangeDropdown = (e) => {
+        setSelected(e.target.value)
+    }
+    
     const handleRemoveSensor = (id) => {
         Promise.all([
             fetch('https://rest.distressing.dev/sensor/delete?microbitID='+ id, {credentials: "include"})
@@ -23,17 +35,19 @@ function BSSensors(props) {
 
     const handleAddSensor = () => {
         Promise.all([
-            fetch('https://rest.distressing.dev/sensor/add?microbitID='+newSensor+'&roomID='+props.id, {credentials: "include"})
+            fetch('https://rest.distressing.dev/sensor/add?microbitID='+selected+'&roomID='+props.id, {credentials: "include"})
             .then(res => res.json()),
             ])
         .then((data) => {
             console.log(data)
-            alert("Sensor "+newSensor+" added to "+props.name)
+            alert("Sensor "+selected+" added to "+props.name)
         })
         .catch((err) => {
             console.log(err);
         });
     }
+
+
     
     return (<>
         {props.isPopup ? (<>
@@ -43,7 +57,21 @@ function BSSensors(props) {
 
                 <form  className='a-sensor' onSubmit={handleAddSensor}>
                     <label><p>Add Sensor:</p></label>
-                        <input type="number" onChange={e => setNewSensor(e.target.value)} required />
+
+                        {nullMicrobits !== null ? (<>
+                            {nullMicrobits.microbits.length > 0 ? (<>
+                                <div className="sensor-dropdown">
+                                    <select value={selected} onChange={(e) => handleChangeDropdown(e)}>
+                                        {nullMicrobits.microbits.map((item) => {
+                                            return (
+                                                <option key={item.microbitID} value={item.microbitID}>{item.microbitID}</option>
+                                            );
+                                        })}
+                                    </select>
+                                </div>                            
+                            </>) : (<p>No available microbits.</p>)}
+                        </>) : (<p>Loading...</p>)}
+
                         <button type="submit" className='r-button add right'>Add</button> 
                 </form>   
 

@@ -2,19 +2,31 @@ import React, { useState, useEffect} from "react";
 import useFetch from "../myHooks/useFetch";
 import Popup from "../popup-components/Popup";
 import BSLightSensor from "./BSLightSensor";
-import { AiOutlineEdit } from "react-icons/ai";
-import { RiDeleteBin6Line } from "react-icons/ri";
 
 function BSLights(props) {
 
     const [roomData] = useFetch('https://rest.distressing.dev/room/info?buildingID='+parseInt(props.id))
+    const [nullMicrobits] = useFetch('https://rest.distressing.dev/microbit/null')
 
+    
     const [roomID, setRoomID] = useState(null)
     const [roomName, setRoomName] = useState(null)
 
     const [ppAdd, setPPAdd] = useState(false)
-    const [newID, setNewID] = useState(null)
+    const [selected, setSelected] = useState(0)
     const [newName, setNewName] = useState(null)
+
+    useEffect(() => {
+        if(nullMicrobits !== null ){
+            if(nullMicrobits.microbits.length > 0) {
+                setSelected(nullMicrobits.microbits[0].microbitID)
+            }
+        }
+    }, [nullMicrobits])
+
+    const handleChangeDropdown = (e) => {
+        setSelected(e.target.value)
+    }
 
     const openPPAdd = (id, name) => {
         setRoomID(id)
@@ -23,7 +35,7 @@ function BSLights(props) {
     }
 
     const handleSubmitAdd = () => {
-        fetch('https://rest.distressing.dev/light/add?lightID='+newID+'&name='+newName+'&roomID='+roomID, {credentials: 'include'})
+        fetch('https://rest.distressing.dev/light/add?lightID='+selected+'&name='+newName+'&roomID='+roomID, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
             console.log(data);
@@ -43,7 +55,21 @@ function BSLights(props) {
                     <div className='si-form'>
                         <form onSubmit={handleSubmitAdd}>
                             <label><p>Microbit ID:</p></label>
-                            <input type="number" onChange={e => setNewID(e.target.value)} required />
+
+                            {nullMicrobits !== null ? (<>
+                                {nullMicrobits.microbits.length > 0 ? (<>
+                                    <div className="dl-dropdown">
+                                        <select value={selected} onChange={(e) => handleChangeDropdown(e)}>
+                                            {nullMicrobits.microbits.map((item) => {
+                                                return (
+                                                    <option key={item.microbitID} value={item.microbitID}>{item.microbitID}</option>
+                                                );
+                                            })}
+                                        </select>
+                                    </div>                            
+                                </>) : (<p>No available microbits.</p>)}
+                            </>) : (<p>Loading...</p>)}
+
                             <label><p>Name:</p></label>
                             <input type="text" onChange={e => setNewName(e.target.value)} required />
 
