@@ -74,20 +74,19 @@ function BSPermissions(props) {
                 <form onSubmit={handleSave}>
                     {walkers !== null && checkedState !== null ? (<>
                         {walkers.microbits.length > 0 ? (<>
-                            <ul>
-                                {walkers.microbits && walkers.microbits.map((item, index) => {
-                                    return (                        
-                                        <li key={item}>
-                                            <input
-                                                type="checkbox"
-                                                id={item}
-                                                checked={checkedState[index]}
-                                                onChange={() => handleChange(index)}
-                                            /><label>User: {item}</label>
-                                        </li>
-                                    );
-                                })}                         
-                            </ul>
+                            {walkers.microbits && walkers.microbits.map((item, index) => {
+                                return (     
+                                    <label class="up-container" key={item}>
+                                        <input
+                                            type="checkbox"
+                                            id={item}
+                                            checked={checkedState[index]}
+                                            onChange={() => handleChange(index)}/>
+                                        <span class="checkmark"></span>
+                                        User {item}
+                                    </label>
+                                );
+                            })}                         
                             <button type="submit" className='form-button'>Save</button> 
                         </>) : (<p>No users available.</p>)}
                     </>) : (<p>Loading...</p>)}      

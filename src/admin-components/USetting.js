@@ -18,13 +18,15 @@ function USetting() {
     };    
 
     const [ppEdit, setPPEdit] = useState(false)
+
     const [editName, setEditName] = useState(null)
+    const [role, setRole] = useState(null)
+
     const [newName, setNewName] = useState(null)
     const [newPw, setNewPw] = useState(null)
     const [newPw2, setNewPw2] = useState(null)
-    const [role, setRole] = useState(null)
-    const [checkedState, setCheckedState] = useState(false);
 
+    const [checkedState, setCheckedState] = useState(false);
     const [newPwFail, setNewPwFail] = useState(false)
 
     const openPPEdit = (n, r) => {
@@ -128,20 +130,26 @@ function USetting() {
     return (
         <div className="us-content">
 
-            <div>
-                <label><input
-                    type="checkbox"
-                    value="admin"
-                    checked={types.admin}
-                    onChange={onChange}
-                />Admin Users</label>
+            <div className="filters">
+                <label class="um-container">
+                    <input
+                        type="checkbox"
+                        value="admin"
+                        checked={types.admin}
+                        onChange={onChange}/>
+                    <span class="checkmark"></span>
+                    Admin Users
+                </label>
 
-                <label><input
-                    type="checkbox"
-                    value="user"
-                    checked={types.user}
-                    onChange={onChange}
-                />Other Users</label>
+                <label class="um-container">
+                    <input
+                        type="checkbox"
+                        value="user"
+                        checked={types.user}
+                        onChange={onChange}/>
+                    <span class="checkmark"></span>
+                    Other Users
+                </label>
             </div>
 
             <Popup trigger={ppEdit} setTrigger={setPPEdit}>
@@ -158,11 +166,14 @@ function USetting() {
                             <input type="password" onChange={e => setNewPw2(e.target.value)} />
                             {newPwFail ? (<p className="comment">! Please check your passwords match.</p>) : ('')}
                             
-                            <label>Administrator Permissions:</label>
-                            <input
-                                type="checkbox"
-                                checked={checkedState}
-                                onChange={() => handleChecked()}/>
+                            <label class="container">
+                                <input
+                                    type="checkbox"
+                                    checked={checkedState}
+                                    onChange={() => handleChecked()}/>
+                                <span class="checkmark"></span>
+                                Administrator Permissions
+                            </label>
 
                             <div className='ic-buttons'>
                                 <button className='ic-save add' onClick={(e) => handleSubmitEdit(e)}>Save</button> 
@@ -175,17 +186,6 @@ function USetting() {
 
             {users !== null ? (<>
                 {users.users.length > 0 ? (<>
-                    {/* {users.users.map((item) => {
-                        return(<>
-                            <div className="us-item">
-                                <button className="r-button edit right" onClick={() => openPPEdit(item.username, item.role)}><span>Edit</span><AiOutlineEdit/></button>      
-                                <p>{item.username} </p>
-                                <p className="item-detail">{item.role === 'ADMIN' && <>- admin</>}</p>
-                            </div>
-                            <div className='room-divider'></div>
-                        </>)
-                    })} */}
-
                     {users.users.filter(x => types[(x.role).toLowerCase()]).map((item) => {
                         return(<>
                             <div className="us-item">
@@ -196,8 +196,6 @@ function USetting() {
                             <div className='room-divider'></div>
                         </>)
                     })}
-
-
                 </>) : (<p className="comment">No users found.</p>)}
             </>) : (<p className="comment">Loading...</p>)} 
 

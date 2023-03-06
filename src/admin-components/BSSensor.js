@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import useFetch from "../myHooks/useFetch";
+import { BsLightbulbFill } from "react-icons/bs";
+import { BsLightbulbOffFill } from "react-icons/bs";
 
 function BSSensors(props) {
   
     const [sensors] = useFetch('https://rest.distressing.dev/room/sensors?roomID=' + props.id)
+    const [lights] = useFetch('https://rest.distressing.dev/light/info?roomID=' + props.id)
     const [nullMicrobits] = useFetch('https://rest.distressing.dev/microbit/null')
     const [selected, setSelected] = useState(0)
+    const [lightState, setLightState] = useState('')
+
+    useEffect(() => {
+        if(lights !== null) {
+            lights.lights.forEach(item => {
+                item.light === "1" ? setLightState([...lightState, true]) : setLightState([...lightState, false])
+            });
+        }
+    }, [lights])
 
     useEffect(() => {
         if(nullMicrobits !== null ){
@@ -14,6 +26,20 @@ function BSSensors(props) {
             }
         }
     }, [nullMicrobits])
+
+    const handleClick = (id, i) => {
+        const updatedLightState = lightState.map((state, index) => 
+            index === i ? !state : state);
+        console.log(updatedLightState)
+        setLightState(updatedLightState)        
+        
+        Promise.all([
+            fetch('https://rest.distressing.dev/light/set/status?lightID='+id+'&status='+updatedLightState[i], {credentials: "include"})
+            .then(res => res.json()),
+            ])
+        .then((data) => {console.log(data)})
+        .catch((err) => {console.log(err);});
+    }
 
     const handleChangeDropdown = (e) => {
         setSelected(e.target.value)
@@ -93,10 +119,17 @@ function BSSensors(props) {
             <div className='bs-sensors'>
                 {sensors !== null ? (<>                
                     {sensors.sensors.length > 0 ? (<>
-                        {sensors.sensors.map((item) => {
-                            return(
-                                <p key={item.sensorID}>Sensor {item.sensorID}</p>                                
-                            )
+                        {sensors.sensors.map((item, index) => {
+                            return(<>
+                                <p key={item.sensorID} className='bs-item'>                         
+                                    <button 
+                                        className={`l-button ${lightState[index] ? ("active") : ("")}`}
+                                        onClick={() => handleClick(item.microbitID, index)}>
+                                        {lightState[index] ? (<BsLightbulbFill/>) : (<BsLightbulbOffFill/>)}
+                                    </button> 
+                                    Sensor {item.sensorID}
+                                </p>                               
+                            </>)
                         })}                  
                     </>) : (<p>No Sensors.</p>)}
                 </>):(<p>Loading...</p>)}            

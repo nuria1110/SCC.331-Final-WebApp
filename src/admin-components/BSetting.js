@@ -29,7 +29,7 @@ function BSetting() {
     const [newName, setNewName] = useState(null)
     const { getLatLong } = useLocation()   
 
-    const menuItems = ["Rooms", "Doors", "Lights"];
+    const menuItems = ["Rooms", "Doors"];
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
     
     useEffect(() => {
@@ -116,8 +116,6 @@ function BSetting() {
             return <BSRooms id={selected} name={sName}/>
         } else if(settingStr === menuItems[1]) {
             return <BSDoors id={selected} name={sName}/>
-        } else if(settingStr === menuItems[2]) {
-            return <BSLights id={selected} name={sName}/>
         }
             
     }
@@ -142,7 +140,7 @@ function BSetting() {
 
                     </>) : (<>
                         <p className="comment">There are no areas in this zone.</p>
-                        <button className="b-button add" onClick={openPPAdd}>Add Building +</button> 
+                        <button className="b-button add" onClick={openPPAdd}>Add Area +</button> 
                     </>)}
 
                                           

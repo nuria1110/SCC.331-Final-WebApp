@@ -8,9 +8,8 @@ function MSetting() {
     const [types, setTypes] = useState({
         sensor: true,
         door: true,
-        light: true,
         walker: true,
-        none: true
+        null: true
     })
 
     const onChange = (e) => {
@@ -22,42 +21,46 @@ function MSetting() {
 
             <p>Microbit roles can be managed through the Areas setting tab.</p>
 
-            <div>
-                <label><input
-                    type="checkbox"
-                    value="sensor"
-                    checked={types.sensor}
-                    onChange={onChange}
-                />Sensors</label>
+            <div className="filters">
+                <label class="um-container">
+                    <input
+                        type="checkbox"
+                        value="sensor"
+                        checked={types.sensor}
+                        onChange={onChange}/>
+                    <span class="checkmark"></span>
+                    Sensors
+                </label>
 
-                <label><input
-                    type="checkbox"
-                    value="door"
-                    checked={types.door}
-                    onChange={onChange}
-                />Door</label>
+                <label class="um-container">
+                    <input
+                        type="checkbox"
+                        value="door"
+                        checked={types.door}
+                        onChange={onChange}/>
+                    <span class="checkmark"></span>
+                    Doors
+                </label>
 
-                <label><input
-                    type="checkbox"
-                    value="light"
-                    checked={types.light}
-                    onChange={onChange}
-                />Light</label>
+                <label class="um-container">
+                    <input
+                        type="checkbox"
+                        value="walker"
+                        checked={types.walker}
+                        onChange={onChange}/>
+                    <span class="checkmark"></span>
+                    Walkers
+                </label>
 
-                <label><input
-                    type="checkbox"
-                    value="walker"
-                    checked={types.walker}
-                    onChange={onChange}
-                />Walker</label>
-
-                <label><input
-                    type="checkbox"
-                    value="none"
-                    checked={types.none}
-                    onChange={onChange}
-                />Not Assigned</label>
-
+                <label class="um-container">
+                    <input
+                        type="checkbox"
+                        value="null"
+                        checked={types.null}
+                        onChange={onChange}/>
+                    <span class="checkmark"></span>
+                    Not Assigned
+                </label>
             </div>
 
             {microbits !== null ? (<>
