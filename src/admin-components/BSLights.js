@@ -7,7 +7,6 @@ function BSLights(props) {
 
     const [roomData] = useFetch('https://rest.distressing.dev/room/info?buildingID='+parseInt(props.id))
     const [nullMicrobits] = useFetch('https://rest.distressing.dev/microbit/null')
-
     
     const [roomID, setRoomID] = useState(null)
     const [roomName, setRoomName] = useState(null)

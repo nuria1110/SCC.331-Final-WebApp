@@ -91,6 +91,7 @@ input[type=number],
 
 input[type=checkbox]{
   margin-left: 1rem;
+
 }
 
 .form-button{
@@ -350,13 +351,13 @@ input[type=checkbox]{
   margin-top: 0.5rem;
 }
 
-.s-dropdown {
+.b-dropdown {
   float:left;
   margin-right: 1rem;
   margin-bottom: 0.5rem;
 }
 
-.s-dropdown>select{
+.b-dropdown>select{
   background-color: #232531;
   font-size: 15px;
   align-items: center;
@@ -373,6 +374,15 @@ input[type=checkbox]{
   margin-left: 1rem;
   margin-right: 1rem;
   width: 20%;
+}
+
+.sensor-dropdown>select{
+  font-size: 15px;
+  align-items: center;
+  border-radius: 8px;
+  padding: 5px 5px;
+  border: none;
+  cursor: pointer;
 }
 
 .pp-dropdown>select {
@@ -527,7 +537,7 @@ input[type=checkbox]{
     margin-left: 1rem;
   }
 
-  .s-dropdown>select {
+  .b-dropdown>select {
     font-size: 18px;
     border-radius: 8px;
     padding: 10px 10px;

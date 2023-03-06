@@ -13,7 +13,6 @@ function BSLightSensor(props) {
 
     const [ppEdit, setPPEdit] = useState(false)
 
-    const [newID, setNewID] = useState(null)
     const [newName, setNewName] = useState(null)
     const [editID, setEditID] = useState(null)
     const [editName, setEditName] = useState(null)
@@ -46,9 +45,8 @@ function BSLightSensor(props) {
         .catch((err) => {console.log(err);});
     }
 
-    //TODO
     const handleSubmitEdit = () => {
-        fetch('', {credentials: 'include'})
+        fetch('https://rest.distressing.dev/light/update?lightID='+editID+'&name'+newName, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
             console.log(data);

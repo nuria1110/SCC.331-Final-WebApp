@@ -128,7 +128,7 @@ function BSetting() {
             <div className="bs-content">
                 <div className="b-options">
                     {buildingData.buildings.length > 0 ? (<>
-                        <div className="s-dropdown">
+                        <div className="b-dropdown">
                             <select value={selected} onChange={(e) => handleChangeDropdown(e)}>
                                 {buildingData.buildings.map((item) => {
                                     return (

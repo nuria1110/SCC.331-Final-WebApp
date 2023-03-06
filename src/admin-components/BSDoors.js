@@ -47,9 +47,8 @@ function BSDoors(props) {
         setPPUA(true)
     }
 
-    //TODO
     const handleSubmitEdit = () => {
-        fetch('', {credentials: 'include'})
+        fetch('https://rest.distressing.dev/door/update?doorID'+editID+'&name='+newName, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
             console.log(data);

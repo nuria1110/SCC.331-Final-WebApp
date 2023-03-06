@@ -5,7 +5,10 @@ import { useUserData } from '../myHooks/useUserData';
 function Grafana() {
     const { getRole } = useUserData()
     const role = getRole()
-    const [userUrl] = useFetch('https://rest.distressing.dev/grafana/user') 
+    const { getInstituteData } = useUserData()
+    const instituteData = getInstituteData()
+
+    const [userUrl] = useFetch('https://rest.distressing.dev/grafana/user?name='+instituteData[1]) 
     const [url, setUrl] = useState(null)
 
     useEffect(() => {
@@ -18,7 +21,7 @@ function Grafana() {
 
       const fetchAdmin = () => {
         Promise.all([
-            fetch('https://rest.distressing.dev/grafana/admin', {credentials: "include"})
+            fetch('https://rest.distressing.dev/grafana/admin?name='+instituteData[1], {credentials: "include"})
             .then(res => res.json()),
             ])
         .then((data) => {
