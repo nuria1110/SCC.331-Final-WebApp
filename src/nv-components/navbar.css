@@ -80,3 +80,13 @@
 .nav-span {
   margin-left: 16px;
 }
+
+.logout {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.logout a {
+  text-decoration: none;
+}

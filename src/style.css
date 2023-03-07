@@ -181,6 +181,11 @@ input[type=checkbox]{
   color: #fff
 }
 
+.map-intro, 
+.admin-intro {
+  margin-bottom: 1rem;
+}
+
 .db-search {
   float: right;
   width: 90%;

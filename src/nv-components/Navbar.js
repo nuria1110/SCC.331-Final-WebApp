@@ -50,7 +50,8 @@ function Navbar() {
                   </Link>
                 </li>
               );
-            })}         
+            })} 
+            <li className="logout"><Link to="/"><button className="db-button grey">Log Out</button></Link></li>        
           </ul>
                       
         </nav>
