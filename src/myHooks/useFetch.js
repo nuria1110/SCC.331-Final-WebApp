@@ -14,7 +14,7 @@ function useFetch (url) {
           alert("You don't have permission.")
           window.location.replace('/')
         } else {
-          alert("There has been an error, please try again later.")
+          alert("There has been an error fetching data, please try again later.")
         }
       }),
     ])
