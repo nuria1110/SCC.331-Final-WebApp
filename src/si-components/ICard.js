@@ -54,7 +54,7 @@ function ICard (props) {
         <div className='ic-container'>
             <div className="ic-clicker" onClick={handleCardClick}>
                 <p>{props.name}</p>
-                <img src={iCardImage} />
+                <img src={iCardImage} alt='zone'/>
             </div>
             {role === "3" ? (
                 <button onClick={openPopup}><span>Edit</span><AiOutlineEdit/></button>

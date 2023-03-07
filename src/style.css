@@ -531,12 +531,15 @@ input[type=checkbox]{
     padding: 10px 18px;
   }
 
-
   .db-intro,
   .admin-intro,
   .grafana-intro{
-    font-size: medium;
     margin-right: 2rem;
+  }
+
+  .db-search {
+    margin-right: -1rem;
+    margin-top: -2rem;
   }
 
   .db-cap {
@@ -597,6 +600,7 @@ input[type=checkbox]{
   .db-intro,
   .admin-intro,
   .grafana-intro{
+    font-size: medium;
     margin-right: 3rem;
   }
 

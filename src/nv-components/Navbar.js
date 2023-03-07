@@ -9,56 +9,62 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarDataAdmin, SidebarDataUser } from "./SidebarData";
+import NotifContainer from "../notif-components/NotifContainer";
 import { IconContext } from "react-icons";
 import "./navbar.css";
 
 function Navbar() {
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
+    const [sidebar, setSidebar] = useState(false);
+    const showSidebar = () => setSidebar(!sidebar);
 
-  const [sData, setSData] = useState(SidebarDataUser)
-  const { getRole } = useUserData()
-  const role = getRole()
+    const [errors, setErrors] = useState(false)
 
-  useEffect(() => {
-    if(role === "3"){
-      setSData(SidebarDataAdmin)
-    }
-  }, [role])
+    const [sData, setSData] = useState(SidebarDataUser)
 
-  return (
-    <>
-      <IconContext.Provider value={{ color: "#FFF"}}>
-        <div className="navbar">
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-        </div>
-        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showSidebar}>
-            <li className="navbar-toggle">
-              <Link to="#" className="menu-bars">
-                <AiIcons.AiOutlineClose />
-              </Link>
-            </li>
-            {sData.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span className="nav-span">{item.title}</span>
-                  </Link>
-                </li>
-              );
-            })} 
-            <li className="logout"><Link to="/"><button className="db-button grey">Log Out</button></Link></li>        
-          </ul>
-                      
-        </nav>
-         
-      </IconContext.Provider>
-    </>
-  );
+    const { getRole } = useUserData()
+    const role = getRole()
+
+    useEffect(() => {
+        if(role === "3"){
+            setSData(SidebarDataAdmin)
+            setErrors(true)
+        }
+    }, [role])
+
+    return (<>
+        <IconContext.Provider value={{ color: "#FFF"}}>
+            <div className="navbar">
+                <Link to="#" className="menu-bars">
+                    <FaIcons.FaBars onClick={showSidebar} />
+                </Link>
+                {errors && <NotifContainer/>}
+            </div>
+            <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+                <ul className="nav-menu-items" onClick={showSidebar}>
+                    
+                    <li className="navbar-toggle">
+                        <Link to="#" className="menu-bars">
+                            <AiIcons.AiOutlineClose />
+                        </Link>
+                    </li>
+
+                    {sData.map((item, index) => {
+                        return (
+                            <li key={index} className={item.cName}>
+                                <Link to={item.path}>
+                                    {item.icon}
+                                    <span className="nav-span">{item.title}</span>
+                                </Link>
+                            </li>
+                        );
+                    })} 
+
+                    <li className="logout"><Link to="/"><button className="db-button grey">Log Out</button></Link></li>        
+                </ul> 
+            </nav>
+            
+        </IconContext.Provider>
+    </>);
 }
 
 export default Navbar;
