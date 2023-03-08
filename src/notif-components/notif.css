@@ -26,7 +26,7 @@
 
 .notif-container {
     background-color: #fff;
-    border-bottom: 1px solid #575A6B;
+    border-bottom: 1px solid #9395a1;
     height: fit-content;
     position: fixed;
     top: 80px;
@@ -44,8 +44,8 @@
 
 .notif-container>p {
     width: 100%;
-    border-bottom: 1px solid #575A6B;
-    background-color: #d6d6d6;
+    background-color: #cecaff;
+    border-bottom: 1px solid #9395a1;
     padding: 10px 10px;
     border-radius: 8px;
 }
@@ -56,7 +56,7 @@
     padding: 10px 20px;
     z-index: 99;
     position: relative;
-    border-bottom: 1px solid #575A6B;
+    border-bottom: 1px solid #9395a1;
     border-radius: 8px;
 }
 

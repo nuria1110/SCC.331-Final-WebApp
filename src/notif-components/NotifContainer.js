@@ -17,13 +17,13 @@ function NotifContainer() {
             {errors !== null ? (<>
             
                 <button className='notif-button' onClick={showNotif}>
-                    {errors.errors.length > 0 && <button className='badge'>{errors.errors.length}</button>}
+                    {!errors.errors[0].includes('NO DATA FOUND') && <button className='badge'>{errors.errors.length}</button>}
                     <MdError/>
                 </button>
                 
                 <div className={notif ? "notif-container active" : "notif-container"}>
                     <p><b>Micro:bit Alerts</b></p>
-                        {errors.errors.map((item) => {
+                        {!errors.errors[0].includes('NO DATA FOUND') && errors.errors.map((item) => {
                             return (<>
                                 <Notification id={item.microbitID} mesg={item.error} time={item.time}/>
                             </>)
