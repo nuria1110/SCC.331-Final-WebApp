@@ -27,18 +27,13 @@
 .notif-container {
     background-color: #fff;
     border-bottom: 1px solid #9395a1;
-<<<<<<< HEAD
     height: 60vh;
-=======
-    height: 700px;
->>>>>>> de954400b40168cb8b7bf3486363ba8692f7f0fc
     position: fixed;
     top: 80px;
     right: -100%;
     transition: 850ms;
     border-radius: 8px;
     overflow-y: scroll;
-<<<<<<< HEAD
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -50,8 +45,6 @@
 .notif-container {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-=======
->>>>>>> de954400b40168cb8b7bf3486363ba8692f7f0fc
 }
   
 .notif-container.active {
