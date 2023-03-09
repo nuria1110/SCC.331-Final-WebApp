@@ -8,14 +8,15 @@ function Room(props) {
 
     return (<>
         <div className="db-room">
-            <h3>{props.name}</h3>
-
             {sensors !== null ? (<>
-                {sensors.sensors.map((item) => {
-                    return (                        
-                        <Sensor id={item.sensorID}/>  
-                    );
-                })}                              
+                {sensors.sensors.length > 0 ? (<>
+                    <h3>{props.name}</h3>
+                    {sensors.sensors.map((item) => {
+                        return (                        
+                            <Sensor id={item.sensorID}/>  
+                        );
+                    })}                
+                </>) : ('')}       
             </>):(<p>Loading...</p>)}
         </div>
     </>)

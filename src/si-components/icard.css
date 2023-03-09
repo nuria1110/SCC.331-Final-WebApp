@@ -49,36 +49,6 @@
     background-color: #08314e;
 }
 
-.ic-buttons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ic-save {
-    display: flex;
-    margin: auto;
-    margin-top: 1rem;
-    width: 40%;
-    color: #fff;
-    border-radius: 30px;
-    padding: 6px 15px;
-    justify-content: center;
-    font-size: medium;
-}
-
-.ic-delete {
-    display: flex;
-    margin: auto;
-    margin-top: 1rem;
-    width: 40%;
-    color: #fff;
-    border-radius: 30px;
-    padding: 6px 15px;
-    justify-content: center;
-    font-size: medium;
-}
-
 span {
     margin-right: 5px;
 }

@@ -7,6 +7,7 @@ function BSPermissions(props) {
     const [haveAccess] = useFetch('https://rest.distressing.dev/door/ids?doorID='+props.id)
 
     const [checkedState, setCheckedState] = useState(null);
+    const [checkAll, setCheckAll] = useState(false)
 
     useEffect(()=> {
         if(walkers !== null){
@@ -44,6 +45,19 @@ function BSPermissions(props) {
         });
     }
 
+    const handleCheckAll = () => {
+        let updatedCheckedState = checkedState
+        if(!checkAll) {
+            setCheckAll(true)
+            updatedCheckedState = updatedCheckedState.map(s => true)
+            setCheckedState(updatedCheckedState)
+        } else {
+            setCheckAll(false)
+            updatedCheckedState = updatedCheckedState.map(s => false)
+            setCheckedState(updatedCheckedState)
+        }
+    }
+
     const handleChange = (i) => {
         const updatedCheckedState = checkedState.map((state, index) => 
             index === i ? !state : state);
@@ -71,10 +85,21 @@ function BSPermissions(props) {
             <p>{props.name}</p>
             <div className='si-popup-divider'></div>  
             <div className='si-form'>
+
                 <form onSubmit={handleSave}>
                     {walkers !== null && checkedState !== null ? (<>
                         {walkers.microbits.length > 0 ? (<>
                             <div className="up-list">
+
+                                <label class="um-container">
+                                    <input
+                                        type="checkbox"
+                                        checked={checkAll}
+                                        onChange={handleCheckAll}/>
+                                    <span class="checkmark"></span>
+                                    Select All
+                                </label>
+
                                 {walkers.microbits && walkers.microbits.map((item, index) => {
                                     return (     
                                         <label class="um-container" key={item}>
@@ -93,6 +118,7 @@ function BSPermissions(props) {
                         </>) : (<p>No users available.</p>)}
                     </>) : (<p>Loading...</p>)}      
                 </form>  
+                
             </div>                  
         </div>
         

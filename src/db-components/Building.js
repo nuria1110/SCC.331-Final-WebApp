@@ -39,9 +39,9 @@ function Building(props) {
                     <p>{capacity}</p>
                 </div> 
                 {rooms.rooms.map((item) => {
-                    return (                        
+                    return (<>                     
                         <Room id={item.roomID} name={item.roomName} />  
-                    );
+                    </>);
                 })}                              
             </>):(<p>Loading...</p>)}
 

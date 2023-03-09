@@ -17,7 +17,7 @@ function NotifContainer() {
             {errors !== null ? (<>
             
                 <button className='notif-button' onClick={showNotif}>
-                    <button className='badge'>{errors.errors.length}</button>
+                    {errors.errors.length > 0 && <button className='badge'>{errors.errors.length}</button>}
                     <MdError/>
                 </button>
                 

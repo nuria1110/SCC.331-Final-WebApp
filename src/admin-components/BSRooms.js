@@ -7,7 +7,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 function BSRooms(props) {
 
-    const [roomData] = useFetch('https://rest.distressing.dev/room/info?buildingID='+parseInt(props.id))
+    const [roomData] = useFetch('https://rest.distressing.dev/room/info?buildingID='+props.id)
 
     const [ppAdd, setPPAdd] = useState(false)
     const [ppEdit, setPPEdit] = useState(false)

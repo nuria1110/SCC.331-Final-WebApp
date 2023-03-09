@@ -21,7 +21,6 @@ function Admin () {
     const handleClick = (s) => {
         const newSettingStr = s; 
         setSettingStr(newSettingStr);
-        console.log(newSettingStr)
     }
 
     return (
