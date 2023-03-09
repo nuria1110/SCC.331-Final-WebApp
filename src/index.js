@@ -7,13 +7,7 @@ import {
 } from "react-router-dom";
 
 import Login from "./routes/Login";
-// import Signup from "./routes/Signup";
-// import SInstitute from "./routes/SInstitute";
 import Navbar from './nv-components/Navbar';
-// import Dashboard from './routes/Dashboard';
-// import Grafana from './routes/Grafana';
-// import Map from './routes/Map';
-// import Admin from './routes/Admin';
 import "./style.css";
 
 const Signup = lazy(() => import('./routes/Signup'))
