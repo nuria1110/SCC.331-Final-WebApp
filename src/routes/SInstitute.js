@@ -35,12 +35,6 @@ function SInstitute() {
             <div className='si-intro'>
                 <h1>Select Zone</h1>        
             </div>   
-            {role === "3" ? (
-                <div className="si-button">
-                    <button className='add' onClick={openPopup} >Add Zone +</button>
-                </div>                 
-            ) : ('')} 
-
             <Popup trigger={popup} setTrigger={setPopup}>
                 <div className='si-popup'>
                     <p>Create Zone</p>
@@ -54,20 +48,35 @@ function SInstitute() {
                         </form>  
                     </div>                  
                 </div>
-            </Popup> 
+            </Popup>             
+            
+                       
 
-            <div className="si-content">
-                {institutes !== null ? (<>
+
+
+            {institutes !== null ? (<>
+
+                {role === "3" ? (
+                    <div className="si-button">
+                        <button className='add' onClick={openPopup} >Add Zone +</button>
+                    </div>                 
+                ) : ('')} 
+
+                <div className="si-content"> 
                     {institutes.institutes.length > 0 ? (<>
                         {institutes.institutes.map((item) => {
                             return(<>
                                 <ICard id={item.instituteID} name={item.name}/>
                             </>)
                         })}
-                    </>) 
-                    : (<p className='comment'>There are no existing Zones.</p>)}
-                </>) : (<p className='comment'>Loading...</p>)}
-            </div>           
+                    </>) : (<>
+                        <p className='comment'>
+                            There are no existing Zones. 
+                            To begin populating your system, add your first Zone using the top right button. 
+                        </p>
+                    </>)}
+                </div> 
+            </>) : (<p className='comment'>Loading...</p>)}          
         </div>
     </>)
 }
