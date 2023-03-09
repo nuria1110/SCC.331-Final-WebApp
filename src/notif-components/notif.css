@@ -27,12 +27,13 @@
 .notif-container {
     background-color: #fff;
     border-bottom: 1px solid #9395a1;
-    height: fit-content;
-    position: absolute;
+    height: 700px;
+    position: fixed;
     top: 80px;
     right: -100%;
     transition: 850ms;
     border-radius: 8px;
+    overflow-y: scroll;
 }
   
 .notif-container.active {
