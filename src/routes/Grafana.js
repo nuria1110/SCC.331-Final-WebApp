@@ -15,9 +15,9 @@ function Grafana() {
         if(role === "3"){
             fetchAdmin()
         } else {
-            setUrl(userUrl.url)
+            userUrl !== null && setUrl(userUrl.url)
         }
-      }, [role])
+      }, [role, userUrl])
 
       const fetchAdmin = () => {
         Promise.all([
@@ -34,7 +34,7 @@ function Grafana() {
     }
 
     return (<>
-        <div class = "grafana">
+        <div className="grafana">
 
         <div className='grafana-intro'>
             <h1>Graphs & Charts</h1>

@@ -14,12 +14,44 @@ function MSetting() {
 
     const onChange = (e) => {
         setTypes({ ...types, [e.target.value]: e.target.checked });
-    };   
+    };  
+    
+    const handleRemove = (id) => {
+        if (window.confirm('Are you sure you wish to remove this walker?')){
+            Promise.all([
+                fetch('https://rest.distressing.dev/microbit/delete/walker?microbitID='+id, {credentials: "include"})
+                .then(res => res.json()),
+                ])
+            .then((data) => {
+                console.log(data)
+                window.location.reload(false)
+            })
+            .catch((err) => {
+                console.log(err);
+            });            
+        }
+    }
+
+    const handleAdd = (id) => {
+
+        Promise.all([
+            fetch('https://rest.distressing.dev/microbit/add/walker?microbitID='+id, {credentials: "include"})
+            .then(res => res.json()),
+            ])
+        .then((data) => {
+            console.log(data)
+            alert("Microbit " +id+ " assigned as walker.")
+            window.location.reload(false)
+        })
+        .catch((err) => {
+            console.log(err);
+        });            
+    }
 
     return (
         <div className="us-content">
 
-            <p>Microbit roles can be managed through the Areas setting tab.</p>
+            <p>Microbit sensors and doors can be managed through the Areas setting tab.</p>
 
             <div className="filters">
                 <label class="um-container">
@@ -68,6 +100,8 @@ function MSetting() {
                     {microbits.microbits.filter(x => types[(x.type).toLowerCase()]).map((item) => {
                         return(<>
                             <div className="us-item">   
+                                {item.type === "null" && <button className="r-button edit right" onClick={() => handleAdd(item.microbitID)}>Assign Walker</button>} 
+                                {item.type === "walker" && <button className="r-button red right" onClick={() => handleRemove(item.microbitID)}>Remove Walker</button>} 
                                 <p>Microbit: {item.microbitID}</p>
                                 <p className="item-detail">- {item.type}</p>
                             </div>

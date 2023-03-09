@@ -166,15 +166,6 @@ function USetting() {
                             <input type="password" onChange={e => setNewPw2(e.target.value)} />
                             {newPwFail ? (<p className="comment">! Please check your passwords match.</p>) : ('')}
                             
-                            {/* <label class="container">
-                                <input
-                                    type="checkbox"
-                                    checked={checkedState}
-                                    onChange={() => handleChecked()}/>
-                                <span class="checkmark"></span>
-                                Administrator Permissions
-                            </label> */}
-
                             <label class="um-container">
                                 <input
                                     type="checkbox"

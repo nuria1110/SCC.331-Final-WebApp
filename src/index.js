@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
@@ -7,14 +7,21 @@ import {
 } from "react-router-dom";
 
 import Login from "./routes/Login";
-import Signup from "./routes/Signup";
-import SInstitute from "./routes/SInstitute";
+// import Signup from "./routes/Signup";
+// import SInstitute from "./routes/SInstitute";
 import Navbar from './nv-components/Navbar';
-import Dashboard from './routes/Dashboard';
-import Grafana from './routes/Grafana';
-import Map from './routes/Map';
-import Admin from './routes/Admin';
+// import Dashboard from './routes/Dashboard';
+// import Grafana from './routes/Grafana';
+// import Map from './routes/Map';
+// import Admin from './routes/Admin';
 import "./style.css";
+
+const Signup = lazy(() => import('./routes/Signup'))
+const SInstitute = lazy(() => import('./routes/SInstitute'))
+const Dashboard = lazy(() => import('./routes/Dashboard'))
+const Grafana = lazy(() => import('./routes/Grafana'))
+const Map = lazy(() => import('./routes/Map'))
+const Admin = lazy(() => import('./routes/Admin'))
 
 const AppLayout = () => (
     <>
@@ -30,30 +37,48 @@ const router = createBrowserRouter([
     }, 
     {
         path: "/signup",
-        element: <Signup />,
+        element: 
+            <React.Suspense fallback={<>...</>}>
+              <Signup />
+            </React.Suspense>,
     }, 
     {
         path: "/selectinstitute",
-        element: <SInstitute />,
+        element:
+            <React.Suspense fallback={<>...</>}>
+                <SInstitute />
+            </React.Suspense>,
     },     
     {
         element: <AppLayout />,
         children: [
             {
                 path: "dashboard",
-                element: <Dashboard />,
+                element:             
+                    <React.Suspense fallback={<>...</>}>
+                        <Dashboard />
+                    </React.Suspense>,
             },
             {
                 path: "data",
-                element: <Grafana />,
+                element: 
+                    <React.Suspense fallback={<>...</>}>
+                        <Grafana />
+                    </React.Suspense>,
             },            
             {
                 path: "map",
-                element: <Map />,
+                element: 
+                    <React.Suspense fallback={<>...</>}>
+                        <Map />
+                    </React.Suspense>,
             },
             {
                 path: "admin",
-                element: <Admin />,
+                element:
+                    <React.Suspense fallback={<>...</>}>
+                        <Admin />
+                    </React.Suspense>,
             },
         ],
     },
