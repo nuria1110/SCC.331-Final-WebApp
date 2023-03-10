@@ -8,7 +8,6 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 import BSRooms from "./BSRooms";
 import BSDoors from "./BSDoors";
-import BSLights from "./BSLights";
 
 import BSMapView from "../map-components/BSMapView";
 import { useLocation } from '../myHooks/useLocation';
@@ -42,7 +41,7 @@ function BSetting() {
 
     useEffect(() => {
         if(buildingData !== null){
-            if(buildingData.buildings.length > 0) {
+            if(buildingData.buildings.length > 0 && selected !== null) {
                 let i = buildingData.buildings.map(e => e.buildingID).indexOf(selected);
                 setSName(buildingData.buildings[i].buildingName)
                 setNewName(buildingData.buildings[i].buildingName)
@@ -121,11 +120,11 @@ function BSetting() {
     }
 
     return (<>                
-        {buildingData !== null && selected !== null ? (<> 
+        {buildingData !== null ? (<> 
 
             <div className="bs-content">
                 <div className="b-options">
-                    {buildingData.buildings.length > 0 ? (<>
+                    {buildingData.buildings.length > 0 && selected !== null ? (<>
                         <div className="b-dropdown">
                             <select value={selected} onChange={(e) => handleChangeDropdown(e)}>
                                 {buildingData.buildings.map((item) => {
@@ -139,7 +138,7 @@ function BSetting() {
                          <button className="b-button add right" onClick={openPPAdd}>Add Area +</button> 
 
                     </>) : (<>
-                        <p className="comment">There are no areas in this zone.</p>
+                        <p>There are no areas in this zone.</p>
                         <button className="b-button add" onClick={openPPAdd}>Add Area +</button> 
                     </>)}
 
@@ -183,7 +182,7 @@ function BSetting() {
                     </div>
                 </Popup> 
                 
-                {buildingData.buildings.length > 0 ? (<>
+                {buildingData.buildings.length > 0 && selected !== null ? (<>
                     <div className="bs-menu">
                         <ul>
                             {menuItems.map((item) => {

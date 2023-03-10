@@ -48,7 +48,7 @@ function Dashboard() {
                                 <Building id={item.buildingID} name={item.buildingName}/>
                             );
                         })}
-                    </>) : (<p className="comment">There are no Areas in this Zone yet.</p>)}
+                    </>) : (<p className="comment">There are no Areas in this Zone yet. To add one, got to the Administrator settings page. </p>)}
                 </>) : (<p className="comment">Loading...</p>)} 
             </div>
         </div>            

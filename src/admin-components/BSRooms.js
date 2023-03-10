@@ -34,6 +34,7 @@ function BSRooms(props) {
     }
 
     const handleSubmitEdit = () => {
+        newName === null && setNewName(editName)
         fetch('https://rest.distressing.dev/room/update?name='+newName+'&roomID='+editID, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
