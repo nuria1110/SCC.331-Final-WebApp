@@ -18,7 +18,7 @@ function BSetting() {
     const instituteData = getInstituteData()
 
     const [buildingData] = useFetch('https://rest.distressing.dev/building/info?instituteID='+instituteData[0])
-    const [selected, setSelected] = useState(0)
+    const [selected, setSelected] = useState(null)
     const [sName, setSName] = useState(null)
     const [sLat, setSLat] = useState(null)
     const [sLong, setSLong] = useState(null)
@@ -121,7 +121,7 @@ function BSetting() {
     }
 
     return (<>                
-        {buildingData !== null ? (<> 
+        {buildingData !== null && selected !== null ? (<> 
 
             <div className="bs-content">
                 <div className="b-options">
