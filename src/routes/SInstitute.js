@@ -50,10 +50,6 @@ function SInstitute() {
                 </div>
             </Popup>             
             
-                       
-
-
-
             {institutes !== null ? (<>
 
                 {role === "3" ? (

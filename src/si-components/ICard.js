@@ -10,7 +10,7 @@ import "./icard.css"
 function ICard (props) {
 
     const [popup, setPopup] = useState(false)
-    const [newName, setNewName] = useState(null)
+    const [newName, setNewName] = useState(props.name)
 
     const { setInstitute } = useUserData()
     const { getRole } = useUserData()
@@ -33,7 +33,7 @@ function ICard (props) {
     }
 
     const handleDelete = () => {
-        if (window.confirm('Are you sure you wish to delete this institute?')){
+        if (window.confirm('Are you sure you wish to delete this zone?')){
             fetch('https://rest.distressing.dev/institute/delete?instituteID='+props.id, {credentials: 'include'})
             .then(res => res.json())
             .then((data) => {
@@ -70,7 +70,7 @@ function ICard (props) {
                 <div className='si-form'>
                     <form onSubmit={handleSubmit}>
                     <label><p>Change Name:</p></label>
-                    <input type="text" onChange={e => setNewName(e.target.value)} />
+                    <input type="text" placeholder={props.name} onChange={e => setNewName(e.target.value)} />
 
                     <div className='ic-buttons'>
                         <button type="submit" className='ic-save add'>Save</button>  

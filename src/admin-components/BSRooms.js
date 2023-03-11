@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useFetch from "../myHooks/useFetch";
 import Popup from "../popup-components/Popup";
-import BSSensor from "./BSSensor";
+import BSSensors from "./BSSensors";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
@@ -107,7 +107,7 @@ function BSRooms(props) {
             </Popup>
 
             <Popup trigger={ppSensors} setTrigger={setPPSensors}>
-                <BSSensor id={editID} name={editName} isPopup={true}/>
+                <BSSensors key={editID} id={editID} name={editName} isPopup={true}/>
             </Popup>
 
             {roomData !== null ? (<>
@@ -119,7 +119,7 @@ function BSRooms(props) {
                                 <button className="r-button edit right" onClick={() => openPPEdit(item.roomID, item.roomName)}><span>Edit</span><AiOutlineEdit/></button>      
                                 <p>{item.roomName}</p>
                                 <div className='room-divider'></div>
-                                <BSSensor id={item.roomID} isPopup={false}/>
+                                <BSSensors key={item.roomID} id={item.roomID} isPopup={false}/>
                             </div>
                         </>)
                     })}

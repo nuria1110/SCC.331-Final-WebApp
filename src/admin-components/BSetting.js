@@ -30,6 +30,8 @@ function BSetting() {
 
     const menuItems = ["Rooms", "Doors"];
     const [settingStr, setSettingStr] = useState(menuItems[0]);  
+
+    const [bSetting, setBSetting] = useState(<BSRooms/>)
     
     useEffect(() => {
         if(buildingData !== null ){
@@ -93,7 +95,7 @@ function BSetting() {
     }
 
     const handleDelete = () => {
-        if (window.confirm('Are you sure you wish to delete this building?\nThis will also delete its rooms and sensors.')){
+        if (window.confirm('Are you sure you wish to delete this area?\nThis will also delete its rooms and sensors.')){
             fetch('https://rest.distressing.dev/building/delete?buildingID='+parseInt(selected), {credentials: 'include'})
             .then(res => res.json())
             .then((data) => {
@@ -106,15 +108,14 @@ function BSetting() {
     }
 
     const handleClickMenu = (s) => {
-        const newSettingStr = s; 
-        setSettingStr(newSettingStr);
+        setSettingStr(s);
     }
 
     const bsSetting = () => {
         if(settingStr === menuItems[0]) {
-            return <BSRooms id={selected} name={sName}/>
+            return <BSRooms key={selected} id={selected} name={sName}/>
         } else if(settingStr === menuItems[1]) {
-            return <BSDoors id={selected} name={sName}/>
+            return <BSDoors key={selected} id={selected} name={sName}/>
         }
             
     }
