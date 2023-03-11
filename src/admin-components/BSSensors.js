@@ -14,10 +14,15 @@ function BSSensors(props) {
     useEffect(() => {
         if(lights !== null) {
             lights.lights.forEach(item => {
-                item.light === "1" ? setLightState([...lightState, true]) : setLightState([...lightState, false])
+                item.light === "1" ? setLightState(lightState => ([...lightState, true])): setLightState(lightState => ([...lightState, false]))                
             });
         }
+        helpme()
     }, [lights])
+
+    const helpme = () => {
+        console.log(lightState)
+    }
 
     useEffect(() => {
         if(nullMicrobits !== null ){
@@ -73,8 +78,6 @@ function BSSensors(props) {
         });
     }
 
-
-    
     return (<>
         {props.isPopup ? (<>
             <div className='si-popup'>
@@ -124,7 +127,7 @@ function BSSensors(props) {
                                 <p key={item.sensorID} className='bs-item'>                         
                                     <button 
                                         className={`l-button ${lightState[index] ? ("active") : ("")}`}
-                                        onClick={() => handleClick(item.microbitID, index)}>
+                                        onClick={() => handleClick(item.sensorID, index)}>
                                         {lightState[index] ? (<BsLightbulbFill/>) : (<BsLightbulbOffFill/>)}
                                     </button> 
                                     Sensor {item.sensorID}
