@@ -8,5 +8,14 @@ export const useUserData = () => {
         return localStorage.getItem('role')
     }
 
-    return {setRole, getRole}
+    const setInstitute = (id, name) => {
+        localStorage.setItem('instituteID', id)
+        localStorage.setItem('instituteName', name)
+    }
+
+    const getInstituteData = () => {
+        return [localStorage.getItem('instituteID'), localStorage.getItem('instituteName')]
+    }
+
+    return {setRole, getRole, setInstitute, getInstituteData}
 }

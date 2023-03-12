@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUserData } from '../myHooks/useUserData';
 import { Link } from "react-router-dom";
 import '../login.css';
@@ -9,21 +10,32 @@ function Login() {
     const [password, setPassword] = useState();
     const [isLoggedIn, setLoggedIn] = useState(false);
     const { setRole } = useUserData()
+    const navigate = useNavigate();
 
-    const handleLogin = () => {
+    useEffect(() => {
+        if(isLoggedIn) {
+          navigate('/selectinstitute');
+        }
+      });
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+    
         fetch('https://rest.distressing.dev/login?user='+username+'&password='+password, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
-            console.log(data);
-            if (!data.success) {
-                alert("Error logging in")
-            } else {
-                // setRole()
-                setLoggedIn(true);
-            }
+          console.log(data);
+          if (!data.success) {
+            alert("Error logging in")
+          } else {
+            setRole(data.auth)
+            setLoggedIn(true);
+          }
         })
-        .catch((err) => {console.log(err);});
-    }
+        .catch((err) => {
+            console.log(err);
+        });
+      }
 
     return(<>
         <div className="login">            
@@ -31,7 +43,7 @@ function Login() {
                 <h1>Log In</h1>        
             </div>
             <div className='l-form'>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSubmit}>
                 <label><p>Username:</p></label>
                 <input type="text" onChange={e => setUserName(e.target.value)} required />
                 <label><p>Password:</p></label>

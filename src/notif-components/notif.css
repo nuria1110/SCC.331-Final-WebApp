@@ -1,0 +1,82 @@
+.notifications {
+    display: flex;   
+    height: fit-content;
+}
+
+.notif-button{
+    font-size: 2.5rem;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 12px; 
+    right: 25px
+}
+
+.badge {
+    display: flex;   
+    height: fit-content;
+    width: fit-content;
+    position: absolute;
+    left: 30px;
+    border-radius: 100px;
+    background-color: #9e0e0e;
+    padding: 2px 6px;
+    border: none;
+}
+
+.notif-container {
+    background-color: #fff;
+    border-bottom: 1px solid #9395a1;
+    height:fit-content;
+    max-height: 60vh;
+    position: fixed;
+    top: 80px;
+    right: -100000px;
+    transition: 850ms;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.notif-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+.notif-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+  
+.notif-container.active {
+    right: 14px;
+    max-width: 325px;
+    width: 90%;
+    transition: 450ms;
+}
+
+.notif-container>p {
+    width: 100%;
+    background-color: #aeddff;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+
+.notif {
+    height: fit-content;
+    overflow: hidden;
+    padding: 10px 20px;
+    z-index: 99;
+    position: relative;
+    border-bottom: 1px solid #9395a1;
+    border-radius: 5px;
+}
+
+.notif:hover {
+    background-color: #ececec;
+}
+
+.notif-time {
+    color: #575A6B;
+    font-size: small;
+}
