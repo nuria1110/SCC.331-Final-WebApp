@@ -17,12 +17,7 @@ function BSSensors(props) {
                 item.light === "1" ? setLightState(lightState => ([...lightState, true])): setLightState(lightState => ([...lightState, false]))                
             });
         }
-        helpme()
     }, [lights])
-
-    const helpme = () => {
-        console.log(lightState)
-    }
 
     useEffect(() => {
         if(nullMicrobits !== null ){

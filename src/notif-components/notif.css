@@ -31,7 +31,7 @@
     max-height: 60vh;
     position: fixed;
     top: 80px;
-    right: -100%;
+    right: -100000px;
     transition: 850ms;
     border-radius: 5px;
     overflow-y: scroll;

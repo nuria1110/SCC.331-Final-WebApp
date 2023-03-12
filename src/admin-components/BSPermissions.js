@@ -3,19 +3,18 @@ import useFetch from "../myHooks/useFetch";
 
 function BSPermissions(props) {
 
-    const [walkers] = useFetch('https://rest.distressing.dev/room/ids/all')
+    const [walkers] = useFetch('https://rest.distressing.dev/microbit/walker')
     const [haveAccess] = useFetch('https://rest.distressing.dev/door/ids?doorID='+props.id)
 
-    const [checkedState, setCheckedState] = useState(null);
+    const [checkedState, setCheckedState] = useState('')
     const [checkAll, setCheckAll] = useState(false)
 
-    useEffect(()=> {
-        if(walkers !== null){
-            let accessArray = []
-            walkers.microbits.forEach((i) => {
-                accessArray.push(haveAccess.microbits.includes(i))
-            })
-            setCheckedState(accessArray)            
+    useEffect(() => {
+        if(walkers !== null && haveAccess !== null) {
+            walkers.microbits.forEach(item => {
+                haveAccess.microbits.includes(item.microbitID) ? setCheckedState(checkedState => ([...checkedState, true])) : setCheckedState(checkedState => ([...checkedState, false]))                
+            });
+            console.log(checkedState)
         }
     }, [walkers])
 
@@ -59,20 +58,18 @@ function BSPermissions(props) {
     }
 
     const handleChange = (i) => {
-        const updatedCheckedState = checkedState.map((state, index) => 
+        let updatedCheckedState = checkedState.map((state, index) => 
             index === i ? !state : state);
         console.log(updatedCheckedState)
         setCheckedState(updatedCheckedState);
     }
 
     const handleSave = () => {
-        walkers.microbits.forEach((e, index) => {
+        walkers.microbits.forEach((item, index) => {
             if(checkedState[index]){
-                console.log("add" + e)
-                addPermission(e)
+                addPermission(item.microbitID)
             } else {
-                console.log("delete" + e)
-                deletePermission(e)
+                deletePermission(item.microbitID)
             }
         })
         alert("User door access permissions have been saved.")
@@ -87,29 +84,29 @@ function BSPermissions(props) {
             <div className='si-form'>
 
                 <form onSubmit={handleSave}>
-                    {walkers !== null && checkedState !== null ? (<>
+                    {walkers !== null ? (<>
                         {walkers.microbits.length > 0 ? (<>
                             <div className="up-list">
 
-                                <label class="um-container">
+                                <label className="um-container">
                                     <input
                                         type="checkbox"
                                         checked={checkAll}
                                         onChange={handleCheckAll}/>
-                                    <span class="checkmark"></span>
-                                    Select All
+                                    <span className="checkmark"></span>
+                                    <b>Select All</b>
                                 </label>
 
-                                {walkers.microbits && walkers.microbits.map((item, index) => {
+                                {checkedState.length > 0 && walkers.microbits.map((item, index) => {
                                     return (     
-                                        <label class="um-container" key={item}>
+                                        <label className="um-container" key={item.microbitID}>
                                             <input
                                                 type="checkbox"
-                                                id={item}
+                                                id={item.microbitID}
                                                 checked={checkedState[index]}
                                                 onChange={() => handleChange(index)}/>
-                                            <span class="checkmark"></span>
-                                            User {item}
+                                            <span className="checkmark"></span>
+                                            User {item.microbitID}
                                         </label>
                                     );
                                 })}                                 

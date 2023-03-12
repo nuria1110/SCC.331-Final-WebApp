@@ -38,6 +38,7 @@ function BSDoors(props) {
     const openPPEdit = (id, name) => {
         setEditID(id)
         setEditName(name)
+        setNewName(name)
         setPPEdit(true)
     }
 
@@ -48,7 +49,7 @@ function BSDoors(props) {
     }
 
     const handleSubmitEdit = () => {
-        fetch('https://rest.distressing.dev/door/update?doorID'+editID+'&name='+newName, {credentials: 'include'})
+        fetch('https://rest.distressing.dev/door/update?doorID='+editID+'&name='+newName, {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
             console.log(data);
@@ -138,7 +139,7 @@ function BSDoors(props) {
             </Popup>
 
             <Popup trigger={ppUA} setTrigger={setPPUA}>
-                <BSPermissions id={editID} name={editName}/>
+                <BSPermissions key={editID} id={editID} name={editName}/>
             </Popup>
 
             {doorData !== null ? (<>
