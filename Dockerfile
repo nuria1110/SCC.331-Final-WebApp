@@ -5,8 +5,9 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install react-scripts@3.4.1 -g --silent
 RUN npm install serve -g --silent
-RUN npm run build
 COPY . ./
+
+RUN npm run build
 
 EXPOSE 3000
 
