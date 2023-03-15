@@ -5,9 +5,11 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install --silent
 RUN npm install react-scripts@3.4.1 -g --silent
+RUN npm i bundle-minify --slient
+RUN npm install serve-g --silent
 COPY . ./
 
 EXPOSE 3000
 
 # start app
-CMD ["npm", "start"]
+CMD ["serve", "-s", "build"]
