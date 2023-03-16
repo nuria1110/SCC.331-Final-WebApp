@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+const https = require('https')
+const httpsAgent = new https.Agent({ keepAlive: true };
 
 function useFetch (url) {
 
@@ -8,7 +10,7 @@ function useFetch (url) {
   useEffect(() => {
     if (!renderAfterCalled.current) {
         Promise.all([
-            fetch(url, {credentials: 'include'})
+            fetch(url, {credentials: 'include', httpsAgent})
             .then(res => {
                 if(res.status === 200) {
                 return res.json()
