@@ -34,7 +34,7 @@ function BSSensors(props) {
         setLightState(updatedLightState)        
         
         Promise.all([
-            fetch('https://rest.distressing.dev/light/set/status?lightID='+id+'&status='+updatedLightState[i], {credentials: "include"})
+            fetch('https://rest.distressing.dev/light/set/status?lightID='+id+'&status='+updatedLightState[i], {credentials: "include", keepAlive: true})
             .then(res => res.json()),
             ])
         .then((data) => {console.log(data)})
@@ -47,7 +47,7 @@ function BSSensors(props) {
     
     const handleRemoveSensor = (id) => {
         Promise.all([
-            fetch('https://rest.distressing.dev/sensor/delete?microbitID='+ id, {credentials: "include"})
+            fetch('https://rest.distressing.dev/sensor/delete?microbitID='+ id, {credentials: "include", keepAlive: true})
             .then(res => res.json()),
             ])
         .then((data) => {
@@ -61,7 +61,7 @@ function BSSensors(props) {
 
     const handleAddSensor = () => {
         Promise.all([
-            fetch('https://rest.distressing.dev/sensor/add?microbitID='+selected+'&roomID='+props.id, {credentials: "include"})
+            fetch('https://rest.distressing.dev/sensor/add?microbitID='+selected+'&roomID='+props.id, {credentials: "include", keepAlive: true})
             .then(res => res.json()),
             ])
         .then((data) => {

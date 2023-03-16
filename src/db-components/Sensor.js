@@ -10,11 +10,11 @@ function Sensor(props) {
 
     const timedFetch = () => {
         Promise.all([
-            fetch('https://rest.distressing.dev/latest?microbitID='+parseInt(props.id)+'&type=temperature&offset=0', {credentials: "include"})
+            fetch('https://rest.distressing.dev/latest?microbitID='+parseInt(props.id)+'&type=temperature&offset=0', {credentials: "include", keepAlive: true})
             .then(res => res.json()),
-            fetch('https://rest.distressing.dev/latest?microbitID='+parseInt(props.id)+'&type=noise&offset=0', {credentials: "include"})
+            fetch('https://rest.distressing.dev/latest?microbitID='+parseInt(props.id)+'&type=noise&offset=0', {credentials: "include", keepAlive: true})
             .then(res => res.json()),
-            fetch('https://rest.distressing.dev/latest?microbitID='+parseInt(props.id)+'&type=light&offset=0', {credentials: "include"})
+            fetch('https://rest.distressing.dev/latest?microbitID='+parseInt(props.id)+'&type=light&offset=0', {credentials: "include", keepAlive: true})
             .then((res) => res.json())
             ])
         .then((data) => {

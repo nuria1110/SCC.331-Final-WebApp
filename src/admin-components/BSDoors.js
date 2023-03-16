@@ -73,7 +73,7 @@ function BSDoors(props) {
     const handleDelete = () => {
         if (window.confirm('Are you sure you wish to delete this door?')){
             Promise.all([
-                fetch('https://rest.distressing.dev/door/delete?doorID=' + editID, {credentials: "include"})
+                fetch('https://rest.distressing.dev/door/delete?doorID=' + editID, {credentials: "include", keepAlive: true})
                 .then(res => res.json()),
                 ])
             .then((data) => {

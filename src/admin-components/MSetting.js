@@ -19,7 +19,7 @@ function MSetting() {
     const handleRemove = (id) => {
         if (window.confirm('Are you sure you wish to remove this walker?')){
             Promise.all([
-                fetch('https://rest.distressing.dev/microbit/delete/walker?microbitID='+id, {credentials: "include"})
+                fetch('https://rest.distressing.dev/microbit/delete/walker?microbitID='+id, {credentials: "include", keepAlive: true})
                 .then(res => res.json()),
                 ])
             .then((data) => {
@@ -35,7 +35,7 @@ function MSetting() {
     const handleAdd = (id) => {
 
         Promise.all([
-            fetch('https://rest.distressing.dev/microbit/add/walker?microbitID='+id, {credentials: "include"})
+            fetch('https://rest.distressing.dev/microbit/add/walker?microbitID='+id, {credentials: "include", keepAlive: true})
             .then(res => res.json()),
             ])
         .then((data) => {

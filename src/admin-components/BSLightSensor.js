@@ -38,7 +38,7 @@ function BSLightSensor(props) {
         setLightState(updatedLightState)        
         
         Promise.all([
-            fetch('https://rest.distressing.dev/light/set/status?lightID='+id+'&status='+updatedLightState[i], {credentials: "include"})
+            fetch('https://rest.distressing.dev/light/set/status?lightID='+id+'&status='+updatedLightState[i], {credentials: "include", keepAlive: true})
             .then(res => res.json()),
             ])
         .then((data) => {console.log(data)})
@@ -59,7 +59,7 @@ function BSLightSensor(props) {
     const handleDelete = () => {
         if (window.confirm('Are you sure you wish to delete this light?')){
             Promise.all([
-                fetch('https://rest.distressing.dev/light/delete?lightID='+ editID, {credentials: "include"})
+                fetch('https://rest.distressing.dev/light/delete?lightID='+ editID, {credentials: "include", keepAlive: true})
                 .then(res => res.json()),
                 ])
             .then((data) => {

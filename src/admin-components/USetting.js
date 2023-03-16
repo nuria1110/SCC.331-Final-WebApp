@@ -114,7 +114,7 @@ function USetting() {
     const handleDelete = () => {
         if (window.confirm('Are you sure you wish to delete this user?')){
             Promise.all([
-                fetch('https://rest.distressing.dev/users/delete?user='+editName, {credentials: "include"})
+                fetch('https://rest.distressing.dev/users/delete?user='+editName, {credentials: "include", keepAlive: true})
                 .then(res => res.json()),
                 ])
             .then((data) => {

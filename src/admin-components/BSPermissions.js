@@ -20,7 +20,7 @@ function BSPermissions(props) {
 
     const deletePermission = (id) => {
         Promise.all([
-            fetch('https://rest.distressing.dev/door/delete/permission?doorID='+props.id+'&microbitID='+id, {credentials: "include"})
+            fetch('https://rest.distressing.dev/door/delete/permission?doorID='+props.id+'&microbitID='+id, {credentials: "include", keepAlive: true})
             .then(res => res.json()),
             ])
         .then((data) => {
@@ -33,7 +33,7 @@ function BSPermissions(props) {
 
     const addPermission = (id) => {
         Promise.all([
-            fetch('https://rest.distressing.dev/door/add/permission?doorID='+props.id+'&microbitID='+id, {credentials: "include"})
+            fetch('https://rest.distressing.dev/door/add/permission?doorID='+props.id+'&microbitID='+id, {credentials: "include", keepAlive: true})
             .then(res => res.json()),
             ])
         .then((data) => {

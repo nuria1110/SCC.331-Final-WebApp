@@ -21,7 +21,7 @@ function Grafana() {
 
       const fetchAdmin = () => {
         Promise.all([
-            fetch('https://rest.distressing.dev/grafana/admin?institute='+instituteData[1], {credentials: "include"})
+            fetch('https://rest.distressing.dev/grafana/admin?institute='+instituteData[1], {credentials: "include", keepAlive: true})
             .then(res => res.json()),
             ])
         .then((data) => {
