@@ -1,11 +1,12 @@
-FROM node:13.12.0-alpine
+FROM node:16-alpine 
 WORKDIR /app
 # ENV PATH /app/node_modules/.bin:$PATH
 
 COPY . .
-RUN npm ci 
 
 ENV NODE_ENV production
+RUN npm install
+RUN npm ci 
 RUN npm run build
 
 EXPOSE 3000
