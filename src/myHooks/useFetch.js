@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 const https = require('https')
-const httpsAgent = new https.Agent({ keepAlive: true };
+const httpsAgent = new https.Agent({ keepAlive: true });
 
 function useFetch (url) {
 
