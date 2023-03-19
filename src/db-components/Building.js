@@ -40,7 +40,7 @@ function Building(props) {
                 </div> 
                 {rooms.rooms.map((item) => {
                     return (<>                     
-                        <Room id={item.roomID} name={item.roomName} />  
+                        <Room key={item.roomID} id={item.roomID} name={item.roomName} />  
                     </>);
                 })}                              
             </>):(<p>Loading...</p>)}
