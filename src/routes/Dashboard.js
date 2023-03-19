@@ -45,7 +45,7 @@ function Dashboard() {
                     {buildingData.buildings.length > 0 ? (<>
                         {buildingData.buildings.filter(x => x.buildingName.toLowerCase().includes(searchInput.toLowerCase())).map((item) => {
                             return (                        
-                                <Building id={item.buildingID} name={item.buildingName}/>
+                                <Building key={item.buildingID} id={item.buildingID} name={item.buildingName}/>
                             );
                         })}
                     </>) : (<p className="comment">There are no Areas in this Zone yet. To add one, got to the Administrator settings page. </p>)}

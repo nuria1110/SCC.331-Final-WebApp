@@ -13,7 +13,7 @@ function Room(props) {
                     <h3>{props.name}</h3>
                     {sensors.sensors.map((item) => {
                         return (                        
-                            <Sensor id={item.sensorID}/>  
+                            <Sensor key={item.sensorID} id={item.sensorID}/>  
                         );
                     })}                
                 </>) : ('')}       
