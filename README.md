@@ -1,7 +1,5 @@
 # SCC.331 Final WebApp
 
-https://portal.distressing.dev
-
 Source code for the front-end of SCC.331 project. 
 
 This page is developed using [React JS](https://react.dev/). 
